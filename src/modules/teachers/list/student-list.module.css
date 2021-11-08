@@ -1,9 +1,0 @@
-.row_name {
-  width: 38rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.cell_name {
-  width: 75rem;
-}

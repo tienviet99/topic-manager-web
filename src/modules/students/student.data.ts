@@ -1,7 +1,7 @@
 export const studentList = [
   {
     id: 1,
-    studentId: 'CT020143',
+    userId: 'CT020143',
     name: 'Pham Tien Viet',
     date: '14/09/1999',
     phone: '0981261036',
@@ -9,7 +9,7 @@ export const studentList = [
   },
   {
     id: 2,
-    studentId: 'CT020143',
+    userId: 'CT020143',
     name: 'Pham Tien Viet',
     date: '14/09/1999',
     phone: '0981261036',
@@ -17,7 +17,7 @@ export const studentList = [
   },
   {
     id: 3,
-    studentId: 'CT020143',
+    userId: 'CT020143',
     name: 'Pham Tien Viet',
     date: '14/09/1999',
     phone: '0981261036',
@@ -25,7 +25,7 @@ export const studentList = [
   },
   {
     id: 4,
-    studentId: 'CT020143',
+    userId: 'CT020143',
     name: 'Pham Tien Viet',
     date: '14/09/1999',
     phone: '0981261036',
@@ -33,7 +33,7 @@ export const studentList = [
   },
   {
     id: 5,
-    studentId: 'CT020143',
+    userId: 'CT020143',
     name: 'Pham Tien Viet',
     date: '14/09/1999',
     phone: '0981261036',
@@ -41,7 +41,7 @@ export const studentList = [
   },
   {
     id: 6,
-    studentId: 'CT020143',
+    userId: 'CT020143',
     name: 'Pham Tien Viet',
     date: '14/09/1999',
     phone: '0981261036',

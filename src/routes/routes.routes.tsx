@@ -14,6 +14,8 @@ import TopicCreate from 'pages/topic-list/create';
 import TopicEdit from 'pages/topic-list/edit';
 import StudentCreate from 'pages/students/create';
 import StudentEdit from 'pages/students/edit';
+import TeacherCreate from 'pages/teachers/create';
+import TeacherEdit from 'pages/teachers/edit';
 import {
   PATH_PROGRESS,
   PATH_REPORT,
@@ -26,6 +28,8 @@ import {
   PATH_USER,
   PATH_STUDENT_CREATE,
   PATH_STUDENT_EDIT,
+  PATH_TEACHER_CREATE,
+  PATH_TEACHER_EDIT,
 } from './routes.path';
 
 interface RouteModel {
@@ -69,6 +73,16 @@ export const appRoutes: RouteModel[] = [
     exact: true,
     path: PATH_TEACHER,
     component: Teacher,
+  },
+  {
+    exact: true,
+    path: PATH_TEACHER_CREATE,
+    component: TeacherCreate,
+  },
+  {
+    exact: true,
+    path: PATH_TEACHER_EDIT,
+    component: TeacherEdit,
   },
   {
     exact: true,

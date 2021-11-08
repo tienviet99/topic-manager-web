@@ -1,23 +1,15 @@
 import { useFormik } from 'formik';
 import { useMemo, useState } from 'react';
-import {
-  Button,
-  InputLabel,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { InputLabel, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/system';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import ITopic from 'types/topic';
 import IUser from 'types/users';
-import { teacherList } from 'constant/teacher';
 import { majorList } from 'constant/major';
 import ButtonConfirm from 'components/button-confirm';
-import Switch from 'components/switch';
 import { studentSchema } from './student-form.schema';
 import styles from './form.module.css';
 

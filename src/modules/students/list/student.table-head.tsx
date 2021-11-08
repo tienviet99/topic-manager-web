@@ -1,6 +1,5 @@
 import { TableCell } from '@mui/material';
 import { Box } from '@mui/system';
-import styles from './student-list.module.css';
 
 export default function StudentTableHead() {
   return (

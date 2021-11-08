@@ -28,13 +28,13 @@ export default function StudentList(props: StudentListProps) {
   function renderRows(item: IUser) {
     return (
       <TableRow key={item.id}>
-        <TableCell className="w-1/12">{item.studentId}</TableCell>
-        <TableCell className="w-5/12">
+        <TableCell className="w-1/12">{item.userId}</TableCell>
+        <TableCell className="w-2/12">
           <Box>{item.name}</Box>
         </TableCell>
-        <TableCell className="w-1/12">{item.date}</TableCell>
-        <TableCell className="w-1/12">{item.phone}</TableCell>
-        <TableCell className="w-1/12">{item.major}</TableCell>
+        <TableCell className="w-2/12">{item.date}</TableCell>
+        <TableCell className="w-2/12">{item.phone}</TableCell>
+        <TableCell className="w-2/12">{item.major}</TableCell>
         <TableCell className="w-1/12" align="center">
           <Link to={PATH_STUDENT_EDIT} className="mx-5 w-6">
             <EditIcon className=" hover:text-gray-500 cursor-pointer" />

@@ -1,6 +1,6 @@
 export default interface IUser {
   id: number;
-  studentId: string;
+  userId: string;
   name: string;
   date: string;
   phone: string;
