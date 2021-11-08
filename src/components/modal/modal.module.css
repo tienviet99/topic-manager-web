@@ -1,0 +1,9 @@
+.modal_container {
+  margin-top: 20%;
+  margin-left: 40%;
+  width: 30rem;
+  background-color: #ecf0f1;
+  color: black;
+  border-radius: 16px;
+  padding: 8px;
+}
