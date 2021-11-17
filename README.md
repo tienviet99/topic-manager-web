@@ -1,4 +1,4 @@
-Build Web : nmp install
+Build Web : `nmp install`
 
 
-Run Web : npm start
+Run Web : `npm start`
