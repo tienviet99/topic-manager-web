@@ -189,7 +189,6 @@ export default function TopicForm({ mode }: TopicFormProps) {
               id="description"
               label="Description *"
               multiline
-              rows={3}
               variant="standard"
               onChange={formik.handleChange}
               value={formik.values.description}

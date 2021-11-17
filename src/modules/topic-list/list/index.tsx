@@ -6,7 +6,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-import { PATH_TOPIC_EDIT } from 'routes/routes.path';
+import {
+  PATH_TOPIC_DETAIL,
+  PATH_TOPIC_EDIT,
+} from 'routes/routes.path';
 import Table from 'components/table';
 import ITopic from 'types/topic';
 import PopupConfirm from 'components/modal';
@@ -37,12 +40,14 @@ export default function TopicList(props: TopicListProps) {
         <TableCell className="w-2/12">{item.teacher}</TableCell>
         <TableCell className="w-1/12">{item.status}</TableCell>
         <TableCell className="w-2/12" align="center">
-          <VisibilityIcon className="mx-4 hover:text-gray-500 cursor-pointer" />
+          <Link to={PATH_TOPIC_DETAIL} className="mx-4 w-6">
+            <VisibilityIcon className="hover:text-gray-500 cursor-pointer" />
+          </Link>
           <Link to={PATH_TOPIC_EDIT} className="mx-4 w-6">
             <EditIcon className=" hover:text-gray-500 cursor-pointer" />
           </Link>
           <DeleteIcon
-            className="mx-4 text-red-500 hover:text-red-400 cursor-pointer"
+            className="mx-4 w-6 text-red-500 hover:text-red-400 cursor-pointer"
             onClick={hanldeOpenMedal}
           />
         </TableCell>

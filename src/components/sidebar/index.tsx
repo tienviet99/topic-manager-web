@@ -83,7 +83,7 @@ export default function Sidebar() {
             <div className={styles.button}> </div>
             <Box className="mx-2 ml-5 flex">
               <TopicIcon />
-              <Box className="ml-2">Your Topic</Box>
+              <Box className="ml-2">My Topic</Box>
             </Box>
           </NavLink>
           <Box className="mx-7">

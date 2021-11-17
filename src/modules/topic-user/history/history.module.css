@@ -1,0 +1,13 @@
+.modal_container {
+  margin-top: 5%;
+  margin-left: 20%;
+  width: 90rem;
+  background-color: #dfe6e9;
+  color: black;
+  border-radius: 16px;
+  padding: 8px;
+}
+.modal_history {
+  height: 42rem;
+  overflow-y: scroll;
+}

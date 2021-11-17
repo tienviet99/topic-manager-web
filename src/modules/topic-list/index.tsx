@@ -9,9 +9,7 @@ import TopicList from './list';
 import { topicList } from './topic.data';
 
 export default function TopicListContainer() {
-  const hanldeSearch = (input: string) => {
-    console.log(input);
-  };
+  const hanldeSearch = (input: string) => {};
 
   return (
     <Box className="mx-10">
@@ -19,7 +17,7 @@ export default function TopicListContainer() {
         <Box className="w-full flex mt-8 justify-between items-center bg-white p-5 rounded-lg shadow">
           <Search onSearch={hanldeSearch} />
           <Link to={PATH_TOPIC_CREATE}>
-            <ButtonCustom label="Add Item" />
+            <ButtonCustom label="Add Topic" />
           </Link>
         </Box>
       </Grid>

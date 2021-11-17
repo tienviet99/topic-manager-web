@@ -35,11 +35,11 @@ export default function TeacherList(props: StudentListProps) {
         <TableCell className="w-2/12">{item.phone}</TableCell>
         <TableCell className="w-2/12">{item.major}</TableCell>
         <TableCell className="w-1/12" align="center">
-          <Link to={PATH_TEACHER_EDIT} className="mx-5 w-6">
+          <Link to={PATH_TEACHER_EDIT} className="mx-4 w-6">
             <EditIcon className=" hover:text-gray-500 cursor-pointer" />
           </Link>
           <DeleteIcon
-            className="mx-5 text-red-500 hover:text-red-400 cursor-pointer"
+            className="mx-4 text-red-500 hover:text-red-400 cursor-pointer"
             onClick={hanldeOpenMedal}
           />
         </TableCell>

@@ -2,8 +2,6 @@ import { ComponentType } from 'react';
 
 import {
   Dashboard,
-  Progress,
-  Report,
   Student,
   Teacher,
   TopicList,
@@ -16,9 +14,10 @@ import StudentCreate from 'pages/students/create';
 import StudentEdit from 'pages/students/edit';
 import TeacherCreate from 'pages/teachers/create';
 import TeacherEdit from 'pages/teachers/edit';
+import TopicDetail from 'pages/topic-list/detail';
+import TopicUserDetailTask from 'pages/topic-user/detail-task';
+import Report from 'pages/topic-user/report';
 import {
-  PATH_PROGRESS,
-  PATH_REPORT,
   PATH_STUDENT,
   PATH_TEACHER,
   PATH_TOPIC_LIST,
@@ -30,6 +29,9 @@ import {
   PATH_STUDENT_EDIT,
   PATH_TEACHER_CREATE,
   PATH_TEACHER_EDIT,
+  PATH_TOPIC_DETAIL,
+  PATH_TOPIC_USER_CONTAINER,
+  PATH_REPORT,
 } from './routes.path';
 
 interface RouteModel {
@@ -43,16 +45,6 @@ export const appRoutes: RouteModel[] = [
     exact: true,
     path: '/',
     component: Dashboard,
-  },
-  {
-    exact: true,
-    path: PATH_PROGRESS,
-    component: Progress,
-  },
-  {
-    exact: true,
-    path: PATH_REPORT,
-    component: Report,
   },
   {
     exact: true,
@@ -101,8 +93,23 @@ export const appRoutes: RouteModel[] = [
   },
   {
     exact: true,
+    path: PATH_TOPIC_DETAIL,
+    component: TopicDetail,
+  },
+  {
+    exact: true,
     path: PATH_TOPIC_USER,
     component: TopicUser,
+  },
+  {
+    exact: true,
+    path: PATH_TOPIC_USER_CONTAINER,
+    component: TopicUserDetailTask,
+  },
+  {
+    exact: true,
+    path: PATH_REPORT,
+    component: Report,
   },
   {
     exact: true,

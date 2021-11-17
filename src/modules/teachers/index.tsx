@@ -19,7 +19,7 @@ export default function TeacherContainer() {
         <Box className="w-full flex mt-8 justify-between items-center bg-white p-5 rounded-lg shadow">
           <Search onSearch={hanldeSearch} />
           <Link to={PATH_TEACHER_CREATE}>
-            <ButtonCustom label="Add Item" />
+            <ButtonCustom label="Add Teacher" />
           </Link>
         </Box>
       </Grid>

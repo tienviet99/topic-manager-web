@@ -19,7 +19,7 @@ export default function StudentContainer() {
         <Box className="w-full flex mt-8 justify-between items-center bg-white p-5 rounded-lg shadow">
           <Search onSearch={hanldeSearch} />
           <Link to={PATH_STUDENT_CREATE}>
-            <ButtonCustom label="Add Item" />
+            <ButtonCustom label="Add Student" />
           </Link>
         </Box>
       </Grid>

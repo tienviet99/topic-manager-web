@@ -24,7 +24,7 @@ export default function ButtonConfirm({
   return (
     <Box className="px-2 py-1">
       <CustomButton
-        className="h-10 w-20"
+        className="h-10 w-24"
         variant="outlined"
         onClick={onClickProps}
         type={type}
