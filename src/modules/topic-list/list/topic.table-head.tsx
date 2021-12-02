@@ -17,7 +17,7 @@ export default function TopicTableHead() {
       <TableCell>
         <Box className="text-xl">Teacher</Box>
       </TableCell>
-      <TableCell>
+      <TableCell align="center">
         <Box className="text-xl">Status</Box>
       </TableCell>
       <TableCell align="center">

@@ -1,8 +1,10 @@
 export default interface IReport {
-  id: number;
-  progressId: number;
-  content: string;
+  taskId: string;
+  description: string;
   link: string;
-  point: number;
-  comment: string;
+  percent: string;
+  point: string;
+  _id?: string;
+  createAt?: string;
+  updateAt?: string;
 }

@@ -29,7 +29,7 @@ export default function TopicList(props: TopicListProps) {
   const hanldeCloseMedal = (): void => {
     setIsOpen(!isOpen);
   };
-  function renderRows(item: ITopic) {
+  function renderRows(item: any) {
     return (
       <TableRow key={item.id} className="w-full">
         <TableCell className="w-1/12">{item.topicId}</TableCell>
@@ -38,7 +38,9 @@ export default function TopicList(props: TopicListProps) {
         </TableCell>
         <TableCell className="w-1/12">{item.major}</TableCell>
         <TableCell className="w-2/12">{item.teacher}</TableCell>
-        <TableCell className="w-1/12">{item.status}</TableCell>
+        <TableCell className="w-1/12" align="center">
+          {item.status}
+        </TableCell>
         <TableCell className="w-2/12" align="center">
           <Link to={PATH_TOPIC_DETAIL} className="mx-4 w-6">
             <VisibilityIcon className="hover:text-gray-500 cursor-pointer" />

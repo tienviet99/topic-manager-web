@@ -1,5 +1,6 @@
 import { TableCell } from '@mui/material';
 import { Box } from '@mui/system';
+
 import styles from './topic-user-list.module.css';
 
 export default function TopicUserTableHead() {
@@ -14,7 +15,7 @@ export default function TopicUserTableHead() {
       <TableCell>
         <Box className="text-xl">Teacher</Box>
       </TableCell>
-      <TableCell>
+      <TableCell align="center">
         <Box className="text-xl">Status</Box>
       </TableCell>
       <TableCell align="center">

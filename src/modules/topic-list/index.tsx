@@ -9,13 +9,13 @@ import TopicList from './list';
 import { topicList } from './topic.data';
 
 export default function TopicListContainer() {
-  const hanldeSearch = (input: string) => {};
+  const hanldeSubmit = (): void => {};
 
   return (
     <Box className="mx-10">
       <Grid item xs={12}>
-        <Box className="w-full flex mt-8 justify-between items-center bg-white p-5 rounded-lg shadow">
-          <Search onSearch={hanldeSearch} />
+        <Box className="w-full flex mt-6 justify-between items-center bg-white px-5 py-3 rounded-lg shadow">
+          <Search onSubmitForm={hanldeSubmit} />
           <Link to={PATH_TOPIC_CREATE}>
             <ButtonCustom label="Add Topic" />
           </Link>

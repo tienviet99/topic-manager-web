@@ -1,14 +1,14 @@
 export default interface IUser {
-  id: number;
   userId: string;
   name: string;
   date: string;
   phone: string;
-  role: string;
   major: string;
-  image: string;
-  email: string;
-  password: string;
+  role: number;
+  completeTopic?: string[];
+  _id?: string;
+  createAt?: string;
+  updateAt?: string;
 }
 
 export interface ILogin {

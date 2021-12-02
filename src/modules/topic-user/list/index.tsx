@@ -23,7 +23,9 @@ export default function TopicUserList(props: TopicUserListProps) {
           <Box className={styles.row_name}>{item.name}</Box>
         </TableCell>
         <TableCell className="w-3/12">{item.teacher}</TableCell>
-        <TableCell className="w-1/12">{item.status}</TableCell>
+        <TableCell className="w-1/12" align="center">
+          {item.status}
+        </TableCell>
         <TableCell className="w-2/12" align="center">
           <Box className="w-full flex justify-center">
             <Link to={PATH_TOPIC_USER_CONTAINER}>

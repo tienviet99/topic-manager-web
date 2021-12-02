@@ -1,12 +1,14 @@
 export default interface ITopic {
-  id: number;
   topicId: string;
   name: string;
-  startDate: string;
-  endDate: string;
+  teacherName: string;
+  start_date: string;
+  end_date: string;
   description: string;
   link: string;
-  status: string;
   major: string;
-  teacher: string;
+  status: boolean;
+  _id?: string;
+  createAt?: string;
+  updateAt?: string;
 }

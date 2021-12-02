@@ -25,7 +25,7 @@ export default function StudentList(props: StudentListProps) {
   const hanldeCloseMedal = (): void => {
     setIsOpen(!isOpen);
   };
-  function renderRows(item: IUser) {
+  function renderRows(item: any) {
     return (
       <TableRow key={item.id}>
         <TableCell className="w-1/12">{item.userId}</TableCell>
