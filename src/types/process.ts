@@ -1,4 +1,4 @@
-export default interface IProgress {
+export default interface IProcess {
   studentId: string;
   teacherId: string;
   topicId: string;

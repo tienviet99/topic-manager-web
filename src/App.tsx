@@ -6,12 +6,14 @@ import {
 
 import Layout from 'layout';
 import './App.css';
+import Login from 'pages/login';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+          <Route exact={true} path="/login" component={Login} />
           <Route exact={false} path="/" component={Layout} />
         </Switch>
       </Router>

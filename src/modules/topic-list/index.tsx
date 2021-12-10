@@ -1,15 +1,24 @@
 import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { RootState } from 'store';
+import { getTopic } from 'store/topic/action';
+import { useEffect } from 'react';
 
 import Search from 'components/search';
 import ButtonCustom from 'components/buton-custom';
-import { Link } from 'react-router-dom';
 import { PATH_TOPIC_CREATE } from 'routes/routes.path';
 import TopicList from './list';
-import { topicList } from './topic.data';
 
 export default function TopicListContainer() {
+  const dispatch = useDispatch();
+  const { topic } = useSelector((state: RootState) => state.topic);
   const hanldeSubmit = (): void => {};
+
+  useEffect(() => {
+    dispatch(getTopic());
+  }, []);
 
   return (
     <Box className="mx-10">
@@ -22,7 +31,7 @@ export default function TopicListContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TopicList topicList={topicList} />
+        <TopicList topicList={topic} />
       </Grid>
     </Box>
   );

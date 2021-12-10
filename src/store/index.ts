@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import TopicReducer from './topic/reducer';
 import UserReducer from './user/reducer';
 
 const middleware = [thunk];
@@ -7,6 +8,7 @@ const middleware = [thunk];
 export const store = createStore(
   combineReducers({
     user: UserReducer,
+    topic: TopicReducer,
   }),
   applyMiddleware(...middleware),
 );

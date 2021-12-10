@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Box } from '@mui/system';
-import { TableCell, TableRow } from '@mui/material';
+import { TableCell, TableRow, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
@@ -29,17 +29,21 @@ export default function TopicList(props: TopicListProps) {
   const hanldeCloseMedal = (): void => {
     setIsOpen(!isOpen);
   };
-  function renderRows(item: any) {
+  function renderRows(item: ITopic) {
     return (
-      <TableRow key={item.id} className="w-full">
+      <TableRow key={item._id} className="w-full">
         <TableCell className="w-1/12">{item.topicId}</TableCell>
         <TableCell>
           <Box className={styles.row_name}>{item.name}</Box>
         </TableCell>
         <TableCell className="w-1/12">{item.major}</TableCell>
-        <TableCell className="w-2/12">{item.teacher}</TableCell>
+        <TableCell className="w-2/12">{item.teacherName}</TableCell>
         <TableCell className="w-1/12" align="center">
-          {item.status}
+          {item.status ? (
+            <Typography> Active </Typography>
+          ) : (
+            <Typography> Inactive </Typography>
+          )}
         </TableCell>
         <TableCell className="w-2/12" align="center">
           <Link to={PATH_TOPIC_DETAIL} className="mx-4 w-6">

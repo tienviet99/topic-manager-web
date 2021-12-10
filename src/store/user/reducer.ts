@@ -8,6 +8,7 @@ import {
   GET_USER_BY_USER_ID,
   UPDATE_USER,
   DELETE_USER,
+  SEARCH_USER,
 } from './constant';
 
 interface InitialState {
@@ -28,6 +29,8 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
     case GET_USER_BY_ID:
       return { ...state, user: action.payload, loading: false };
     case GET_USER_BY_USER_ID:
+      return { ...state, user: action.payload, loading: false };
+    case SEARCH_USER:
       return { ...state, user: action.payload, loading: false };
     case ADD_USER:
       return {

@@ -12,6 +12,6 @@ export default interface IUser {
 }
 
 export interface ILogin {
-  email: string;
+  userId: string;
   password: string;
 }

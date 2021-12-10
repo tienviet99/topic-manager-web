@@ -8,6 +8,7 @@ import {
   deleteUser,
   getUser,
   getUserById,
+  getUserByUserId,
   searchUser,
   updateUser,
 } from 'store/user/action';
@@ -32,18 +33,15 @@ export default function TeacherContainer() {
       '619b0eb85e3962011dc53c71',
     ],
   };
-  const keyword: string = '001';
+
   const dispatch = useDispatch();
-  const search = async () => {
-    try {
-      await UserApi.search(keyword);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const hanldeSubmit = (e: string): void => {
     console.log('search: ', e);
-    search();
+    const params = {
+      keyword: `${e}`,
+    };
+    dispatch(searchUser(params));
   };
   const { user } = useSelector((state: RootState) => state.user);
 
@@ -51,6 +49,7 @@ export default function TeacherContainer() {
     dispatch(getUser());
   }, []);
 
+  console.log('user: ', user);
   return (
     <Box className="mx-10">
       <Grid item xs={12}>

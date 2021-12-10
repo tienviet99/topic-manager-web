@@ -12,3 +12,4 @@ export const PATH_TOPIC_USER = '/topic/user';
 export const PATH_REPORT = '/topic/user/report';
 export const PATH_TOPIC_USER_CONTAINER = '/topic/user/container';
 export const PATH_USER = '/user';
+export const LOGIN = 'LOGIN';

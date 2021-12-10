@@ -18,5 +18,5 @@ export type ActionTypes =
   | { type: typeof DELETE_USER; payload: string }
   | { type: typeof ADD_USER; payload: IUser }
   | { type: typeof UPDATE_USER; payload: IUser }
-  | { type: typeof SEARCH_USER; payload: string }
+  | { type: typeof SEARCH_USER; payload: any }
   | { type: typeof REJECTED; payload?: string };

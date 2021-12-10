@@ -83,11 +83,11 @@ export const deleteUser =
   };
 
 export const searchUser =
-  (keyword: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  (keyword: any) => async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
-      const { data: user } = await UserApi.search(keyword);
-      dispatch({ type: SEARCH_USER, payload: user });
+      const res = await UserApi.search(keyword);
+      dispatch({ type: SEARCH_USER, payload: res.data });
     } catch (error) {
       dispatch({ type: REJECTED });
     }

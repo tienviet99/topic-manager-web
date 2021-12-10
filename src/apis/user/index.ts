@@ -26,7 +26,7 @@ const UserApi = {
     const url: string = `/user/delete/${_id}`;
     return axiosClient.delete(url);
   },
-  search(keyword: string) {
+  search(keyword: any) {
     const url: string = `/user/search`;
     return axiosClient.post(url, keyword);
   },
