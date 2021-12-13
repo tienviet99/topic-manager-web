@@ -1,10 +1,18 @@
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useFormik } from 'formik';
-import { Button } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
-const CustomTextField = styled(TextField)({
+const CustomFormControl = styled(FormControl)({
   '& label.Mui-focused': {
     color: '#0c2461',
   },
@@ -44,14 +52,29 @@ export default function Search({ onSubmitForm }: SearchProps) {
   });
   return (
     <form onSubmit={formik.handleSubmit} className="w-5/12 flex">
-      <CustomTextField
-        className="w-full"
-        label="Search here"
-        id="custom-css-outlined-input"
-        name="keyword"
-        onChange={formik.handleChange}
-        value={formik.values.keyword}
-      />
+      <CustomFormControl
+        sx={{ m: 2, width: '50ch' }}
+        variant="outlined"
+      >
+        <InputLabel htmlFor="outlined-adornment-password">
+          Search here
+        </InputLabel>
+        <OutlinedInput
+          id="custom-css-outlined-input"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton edge="end" type="submit">
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+          label="Search Here"
+          className="w-full"
+          name="keyword"
+          onChange={formik.handleChange}
+          value={formik.values.keyword}
+        />
+      </CustomFormControl>
       <Button type="submit" className="invisible" />
     </form>
   );

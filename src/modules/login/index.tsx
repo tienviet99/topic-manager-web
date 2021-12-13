@@ -1,10 +1,12 @@
 import { Box, TextField, Typography } from '@mui/material';
 import ButtonConfirm from 'components/button-confirm';
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 
 import { ILogin } from 'types/users';
 
 export default function LoginForm() {
+  const history = useHistory();
   const initialValues: ILogin = {
     userId: '',
     password: '',
@@ -14,6 +16,8 @@ export default function LoginForm() {
       userId: values.userId,
       password: values.password,
     };
+    console.log(submitData);
+    history.push('/');
   };
   const formik = useFormik({
     initialValues,
@@ -22,35 +26,39 @@ export default function LoginForm() {
   });
   return (
     <Box>
-      <Box>
-        <Typography>Login to Topic Manager</Typography>
-        <Typography>Fill your ID and PassWord</Typography>
-      </Box>
-      <Box>
-        <Box className="m-5">
-          <TextField
-            className="w-96"
-            id="userId"
-            name="userId"
-            label="User Id"
-            variant="outlined"
-            value={formik.values.userId}
-            onChange={formik.handleChange}
-          />
+      <form onSubmit={formik.handleSubmit}>
+        <Box>
+          <Typography variant="h4" component="div" gutterBottom>
+            Login to Topic Manager
+          </Typography>
+          <Typography>Fill your ID and Password</Typography>
         </Box>
-        <Box className="m-5">
-          <TextField
-            className="w-96"
-            id="password"
-            name="password"
-            label="password"
-            variant="outlined"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-          />
+        <Box>
+          <Box className="m-5">
+            <TextField
+              className="w-96"
+              id="userId"
+              name="userId"
+              label="User Id"
+              variant="outlined"
+              value={formik.values.userId}
+              onChange={formik.handleChange}
+            />
+          </Box>
+          <Box className="m-5">
+            <TextField
+              className="w-96"
+              id="password"
+              name="password"
+              label="Password"
+              variant="outlined"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
+          </Box>
+          <ButtonConfirm label="Login" type="submit" />
         </Box>
-        <ButtonConfirm label="Login" type="submit" />
-      </Box>
+      </form>
     </Box>
   );
 }
