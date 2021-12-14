@@ -22,18 +22,6 @@ export default function StudentContainer() {
     dispatch(getUser());
   }, []);
 
-  // const getUserData = async () => {
-  //   try {
-  //     const userData = await UserApi.getAll();
-  //     console.log('Data: ', userData.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getUserData();
-  // }, []);
-
   return (
     <Box className="mx-10">
       <Grid item xs={12}>

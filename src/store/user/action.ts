@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import UserApi from 'apis/user';
-import IUser from 'types/users';
+import IUser, { ILogin } from 'types/users';
+import jwt from 'jsonwebtoken';
 
 import {
   ActionTypes,
@@ -9,6 +10,7 @@ import {
   GET_USER,
   GET_USER_BY_ID,
   GET_USER_BY_USER_ID,
+  LOGIN,
   PENDING,
   REJECTED,
   SEARCH_USER,
@@ -88,6 +90,21 @@ export const searchUser =
     try {
       const res = await UserApi.search(keyword);
       dispatch({ type: SEARCH_USER, payload: res.data });
+    } catch (error) {
+      dispatch({ type: REJECTED });
+    }
+  };
+
+export const login =
+  (user: ILogin) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PENDING });
+    try {
+      const { data } = await UserApi.login(user);
+      localStorage.setItem('accessToken', JSON.stringify(data.token));
+      localStorage.setItem('secret', JSON.stringify(data.secret));
+      const info = jwt.verify(data.token, data.secret);
+      console.log(info);
+      dispatch({ type: LOGIN, payload: data.infoUser });
     } catch (error) {
       dispatch({ type: REJECTED });
     }

@@ -1,4 +1,4 @@
-import IUser from 'types/users';
+import IUser, { ILogin } from 'types/users';
 import {
   ActionTypes,
   PENDING,
@@ -9,15 +9,20 @@ import {
   UPDATE_USER,
   DELETE_USER,
   SEARCH_USER,
+  LOGIN,
 } from './constant';
 
 interface InitialState {
   loading: boolean;
+  isLoggedIn: boolean;
   user: IUser[];
+  infoUser: ILogin[];
 }
 const initialState: InitialState = {
   loading: false,
+  isLoggedIn: false,
   user: [],
+  infoUser: [],
 };
 
 const UserReducer = (state = initialState, action: ActionTypes) => {
@@ -56,6 +61,14 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
         (item: IUser) => item._id !== action.payload,
       );
       return { ...state, users: filterUsers, loading: false };
+    }
+    case LOGIN: {
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: true,
+        infoUser: action.payload,
+      };
     }
     default:
       return state;

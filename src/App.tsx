@@ -7,6 +7,7 @@ import {
 import Layout from 'layout';
 import './App.css';
 import Login from 'pages/login';
+import PrivateRoute from 'routes/private.routes';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact={true} path="/login" component={Login} />
-          <Route exact={false} path="/" component={Layout} />
+          <PrivateRoute>
+            <Route exact={false} path="/" component={Layout} />
+          </PrivateRoute>
         </Switch>
       </Router>
     </div>

@@ -1,4 +1,4 @@
-import IUser from 'types/users';
+import IUser, { ILogin } from 'types/users';
 
 export const PENDING = 'PENDING';
 export const GET_USER = 'GET_USERS';
@@ -9,6 +9,7 @@ export const ADD_USER = 'ADD_USER';
 export const UPDATE_USER = 'UPADTE_USER';
 export const SEARCH_USER = 'SEARCH_USER';
 export const REJECTED = 'REJECTED';
+export const LOGIN = 'LOGIN';
 
 export type ActionTypes =
   | { type: typeof PENDING }
@@ -19,4 +20,5 @@ export type ActionTypes =
   | { type: typeof ADD_USER; payload: IUser }
   | { type: typeof UPDATE_USER; payload: IUser }
   | { type: typeof SEARCH_USER; payload: any }
+  | { type: typeof LOGIN; payload: ILogin }
   | { type: typeof REJECTED; payload?: string };

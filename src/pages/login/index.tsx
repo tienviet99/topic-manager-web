@@ -1,26 +1,13 @@
 import { Box } from '@mui/system';
 
 import LoginForm from 'modules/login';
-import logo from 'assets/hv-ktmm.jpg';
+import styles from './login.module.css';
 
 export default function Login() {
   return (
-    <Box
-      className="h-screen w-screen relative"
-      style={{ backgroundColor: '#0c2461' }}
-    >
-      <Box className="flex w-10/12 bg-gray-50 absolute top-20 left-40 rounded-2xl">
-        <Box
-          className="w-1/2 flex justify-center items-center "
-          style={{ backgroundColor: '#ECECEC' }}
-        >
-          <img src={logo} alt="" className="rounded-2xl" />
-        </Box>
-        <Box className="w-1/2 flex justify-center items-center">
-          <Box>
-            <LoginForm />
-          </Box>
-        </Box>
+    <Box className={styles.container}>
+      <Box className="absolute py-28 px-10 top-36 left-56 shadow-md border rounded-md bg-blue-50 bg-opacity-90">
+        <LoginForm />
       </Box>
     </Box>
   );

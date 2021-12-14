@@ -1,5 +1,5 @@
 import { axiosClient } from 'apis';
-import IUser from 'types/users';
+import IUser, { ILogin } from 'types/users';
 
 const UserApi = {
   getAll() {
@@ -29,6 +29,10 @@ const UserApi = {
   search(keyword: any) {
     const url: string = `/user/search`;
     return axiosClient.post(url, keyword);
+  },
+  login(userLogin: ILogin) {
+    const url: string = `/login`;
+    return axiosClient.post(url, userLogin);
   },
 };
 
