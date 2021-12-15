@@ -15,3 +15,9 @@ export interface ILogin {
   userId: string;
   password: string;
 }
+
+export interface IInfo {
+  _id: string;
+  role: number;
+  iat: number;
+}

@@ -7,10 +7,12 @@ import {
   ActionTypes,
   ADD_USER,
   DELETE_USER,
+  GET_PROFILE,
   GET_USER,
   GET_USER_BY_ID,
   GET_USER_BY_USER_ID,
   LOGIN,
+  LOGOUT,
   PENDING,
   REJECTED,
   SEARCH_USER,
@@ -34,6 +36,17 @@ export const getUserById =
     try {
       const { data: user } = await UserApi.getUserById(_id);
       dispatch({ type: GET_USER_BY_ID, payload: user });
+    } catch (error) {
+      dispatch({ type: REJECTED });
+    }
+  };
+
+export const getProfile =
+  (_id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PENDING });
+    try {
+      const { data: profile } = await UserApi.getUserById(_id);
+      dispatch({ type: GET_PROFILE, payload: profile });
     } catch (error) {
       dispatch({ type: REJECTED });
     }
@@ -102,9 +115,22 @@ export const login =
       const { data } = await UserApi.login(user);
       localStorage.setItem('accessToken', JSON.stringify(data.token));
       localStorage.setItem('secret', JSON.stringify(data.secret));
-      const info = jwt.verify(data.token, data.secret);
-      console.log(info);
-      dispatch({ type: LOGIN, payload: data.infoUser });
+      const infoUser: any = jwt.verify(data.token, data.secret);
+      localStorage.setItem('infoUser', JSON.stringify(infoUser));
+      dispatch({ type: LOGIN });
+    } catch (error) {
+      dispatch({ type: REJECTED });
+    }
+  };
+
+export const logout =
+  () => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PENDING });
+    try {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('secret');
+      localStorage.removeItem('infoUser');
+      dispatch({ type: LOGOUT });
     } catch (error) {
       dispatch({ type: REJECTED });
     }

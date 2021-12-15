@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Box } from '@mui/system';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import PeopleIcon from '@mui/icons-material/People';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
-import PersonIcon from '@mui/icons-material/Person';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Collapse, Divider } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import TopicIcon from '@mui/icons-material/Topic';
 import ViewListIcon from '@mui/icons-material/ViewList';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 import {
   PATH_STUDENT,
@@ -19,12 +21,39 @@ import {
   PATH_TOPIC_USER,
   PATH_USER,
 } from 'routes/routes.path';
+import { getProfile } from 'store/user/action';
 import styles from './sidebar.module.css';
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+
+  const { profile }: any = useSelector(
+    (state: RootState) => state.user,
+  );
+  const infoUser: any = JSON.parse(
+    `${localStorage.getItem('infoUser')}`,
+  );
+  const profileUser: any = Object(profile[0]);
+  const renderSwitch = (param: number): string => {
+    switch (param) {
+      case 0:
+        return 'Student';
+      case 1:
+        return 'Teacher';
+      case 2:
+        return 'Admin';
+      default:
+        return 'Student';
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getProfile(infoUser._id));
+  }, []);
+
   return (
-    <div className="fixed top-0 left-0 w-72 px-4 bottom-0 ">
+    <div className="fixed top-0 left-0 w-64 px-4 bottom-0 ">
       <div className="my-7 text-4xl text-center">
         <Link to="/" className="flex justify-center">
           <Box className="font-mono text-6xl text-white">KMA</Box>
@@ -121,10 +150,12 @@ export default function Sidebar() {
         >
           <div className={styles.button}> </div>
           <Box className="mx-2 flex">
-            <PersonIcon />
+            <Box>
+              <AccountBoxIcon style={{ fontSize: '50px' }} />
+            </Box>
             <Box className="ml-2">
-              <Box>Pham Tien Viet</Box>
-              <Box>Student</Box>
+              <Box>{profileUser.name ? profileUser.name : null}</Box>
+              <Box>{renderSwitch(profileUser.role)}</Box>
             </Box>
           </Box>
         </NavLink>

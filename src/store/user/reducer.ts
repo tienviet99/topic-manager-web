@@ -10,6 +10,8 @@ import {
   DELETE_USER,
   SEARCH_USER,
   LOGIN,
+  GET_PROFILE,
+  LOGOUT,
 } from './constant';
 
 interface InitialState {
@@ -17,12 +19,22 @@ interface InitialState {
   isLoggedIn: boolean;
   user: IUser[];
   infoUser: ILogin[];
+  profile: IUser;
 }
 const initialState: InitialState = {
   loading: false,
   isLoggedIn: false,
   user: [],
   infoUser: [],
+  profile: {
+    userId: '',
+    name: '',
+    date: '',
+    role: 0,
+    phone: '',
+    major: '',
+    completeTopic: [],
+  },
 };
 
 const UserReducer = (state = initialState, action: ActionTypes) => {
@@ -33,6 +45,8 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
       return { ...state, user: action.payload, loading: false };
     case GET_USER_BY_ID:
       return { ...state, user: action.payload, loading: false };
+    case GET_PROFILE:
+      return { ...state, profile: action.payload, loading: false };
     case GET_USER_BY_USER_ID:
       return { ...state, user: action.payload, loading: false };
     case SEARCH_USER:
@@ -67,7 +81,13 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
         ...state,
         loading: false,
         isLoggedIn: true,
-        infoUser: action.payload,
+      };
+    }
+    case LOGOUT: {
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
       };
     }
     default:

@@ -3,9 +3,9 @@ import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoute = (props: any) => {
   const isLoggedIn = Boolean(
-    localStorage.getItem('accessToken') &&
-    localStorage.getItem('secret'),
+    localStorage.getItem('accessToken')
   );
+
   return !isLoggedIn ? (
     <Redirect to="/login" />
   ) : (

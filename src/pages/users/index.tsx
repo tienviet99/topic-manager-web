@@ -1,5 +1,10 @@
-import React from 'react';
+import { Box } from '@mui/material';
+import UserProfile from 'modules/user-profile';
 
 export default function User() {
-  return <div>User</div>;
+  return (
+    <Box>
+      <UserProfile />
+    </Box>
+  );
 }

@@ -19,8 +19,7 @@ export default function LoginForm() {
   };
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const isCheck = Boolean(
-    localStorage.getItem('accessToken') &&
-    localStorage.getItem('secret'),
+    localStorage.getItem('accessToken')
   );
 
   useEffect(() => {
