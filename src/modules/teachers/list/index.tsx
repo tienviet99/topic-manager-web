@@ -59,6 +59,7 @@ export default function TeacherList(props: StudentListProps) {
         isOpen={isOpen}
         title="Comfirm Request"
         description="Delete ?"
+        handleConfirm={hanldeCloseMedal}
         handleClose={hanldeCloseMedal}
       />
     </Box>

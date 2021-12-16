@@ -11,12 +11,14 @@ import styles from './modal.module.css';
 interface PopupConfirmProps {
   isOpen: boolean;
   handleClose: () => void;
+  handleConfirm: () => void;
   title: string;
   description: string;
 }
 
 export default function PopupConfirm(props: PopupConfirmProps) {
-  const { isOpen, handleClose, title, description } = props;
+  const { isOpen, handleClose, handleConfirm, title, description } =
+    props;
 
   return (
     <div>
@@ -44,7 +46,11 @@ export default function PopupConfirm(props: PopupConfirmProps) {
             {description}
           </Typography>
           <Box className="flex justify-end mt-9">
-            <ButtonConfirm label="Comfirm" type="button" />
+            <ButtonConfirm
+              label="Comfirm"
+              type="button"
+              onClickProps={handleConfirm}
+            />
             <ButtonCancel label="Cancel" onClickProps={handleClose} />
           </Box>
         </Box>

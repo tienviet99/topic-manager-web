@@ -1,22 +1,28 @@
-import {
-  Box,
-  FilledInput,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { RootState } from 'store';
+import { useHistory } from 'react-router-dom';
 
 import ButtonCancel from 'components/button-cancel';
 import { getProfile, logout } from 'store/user/action';
-import { useHistory } from 'react-router-dom';
 import IUser from 'types/users';
+import Avt from 'assets/avt.jpg';
+import PopupConfirm from 'components/modal';
+import BasicInformation from './basic-information';
+import CompletedTopic from './completed-topic';
 
 export default function UserProfile() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const hanldeOpenMedal = (): void => {
+    setIsOpen(!isOpen);
+  };
+  const hanldeCloseMedal = (): void => {
+    setIsOpen(!isOpen);
+  };
   const { profile }: any = useSelector(
     (state: RootState) => state.user,
   );
@@ -45,77 +51,21 @@ export default function UserProfile() {
     dispatch(getProfile(infoUser._id));
   }, [dispatch]);
 
-  console.log(profileUser);
   return (
     <Box>
-      <Box className="w-2/3 flex border-2 border-gray-300 rounded-xl">
-        <Box className="w-1/2 ml-10 ">
-          <Box className="flex items-center mt-10 ">
-            <Typography
-              variant="h6"
-              className="text-gray-600 w-44 text-left"
-            >
-              Name :
-            </Typography>
-            <Box className="shadow-md border ml-5 px-4 rounded-md">
-              <Typography variant="h6">{profileUser.name}</Typography>
-            </Box>
-          </Box>
-          <Box className="flex items-center mt-6">
-            <Typography
-              variant="h6"
-              className="text-gray-600 w-44 text-left"
-            >
-              Birthday :
-            </Typography>
-            <Box className="shadow-md border ml-5 px-4 rounded-md">
-              <Typography variant="h6">{profileUser.date}</Typography>
-            </Box>
-          </Box>
-          <Box className="flex items-center mt-6">
-            <Typography
-              variant="h6"
-              className="text-gray-600 w-44 text-left"
-            >
-              Phone :
-            </Typography>
-            <Box className="shadow-md border ml-5 px-4 rounded-md">
-              <Typography variant="h6">
-                {profileUser.phone}
-              </Typography>
-            </Box>
-          </Box>
-          <Box className="flex items-center mt-6">
-            <Typography
-              variant="h6"
-              className="text-gray-600 w-44 text-left"
-            >
-              Type :
-            </Typography>
-            <Box className="shadow-md border ml-5 px-4 rounded-md">
-              <Typography variant="h6">
-                {renderSwitch(profileUser.role)}
-              </Typography>
-            </Box>
-          </Box>
-          <Box className="flex items-center mt-6 mb-10">
-            <Typography
-              variant="h6"
-              className="text-gray-600 w-44 text-left"
-            >
-              Major :
-            </Typography>
-            <Box className="shadow-md border ml-5 px-4 rounded-md">
-              <Typography variant="h6">
-                {profileUser.major}
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
-        <Box>Picture</Box>
+      <BasicInformation />
+      <CompletedTopic />
+      <Box className="w-2/3 text-right mt-3">
+        <ButtonCancel label="Logout" onClickProps={hanldeOpenMedal} />
       </Box>
       <Box>
-        <ButtonCancel label="Logout" onClickProps={handleLoggout} />
+        <PopupConfirm
+          isOpen={isOpen}
+          title="Comfirm Logout"
+          description="Log Out ?"
+          handleConfirm={handleLoggout}
+          handleClose={hanldeCloseMedal}
+        />
       </Box>
     </Box>
   );

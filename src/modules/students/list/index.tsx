@@ -60,6 +60,7 @@ export default function StudentList(props: StudentListProps) {
         isOpen={isOpen}
         title="Comfirm Request"
         description="Delete ?"
+        handleConfirm={hanldeCloseMedal}
         handleClose={hanldeCloseMedal}
       />
     </Box>

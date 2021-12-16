@@ -73,6 +73,7 @@ export default function TopicList(props: TopicListProps) {
         isOpen={isOpen}
         title="Comfirm Request"
         description="Delete ?"
+        handleConfirm={hanldeCloseMedal}
         handleClose={hanldeCloseMedal}
       />
     </Box>
