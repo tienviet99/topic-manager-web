@@ -1,10 +1,9 @@
 import { Divider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { RootState } from 'store';
-import { getProfile, logout } from 'store/user/action';
+import { getProfile } from 'store/user/action';
 
 import IUser from 'types/users';
 import Avt from 'assets/avt.jpg';

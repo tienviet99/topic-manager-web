@@ -37,7 +37,9 @@ export default function TopicList(props: TopicListProps) {
           <Box className={styles.row_name}>{item.name}</Box>
         </TableCell>
         <TableCell className="w-1/12">{item.major}</TableCell>
-        <TableCell className="w-2/12">{item.teacherName}</TableCell>
+        <TableCell className="w-2/12">
+          {item.teacherId.name}
+        </TableCell>
         <TableCell className="w-1/12" align="center">
           {item.status ? (
             <Typography> Active </Typography>
@@ -60,6 +62,7 @@ export default function TopicList(props: TopicListProps) {
       </TableRow>
     );
   }
+
   return (
     <Box>
       <Table

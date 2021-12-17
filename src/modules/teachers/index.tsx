@@ -9,6 +9,7 @@ import { RootState } from 'store';
 import Search from 'components/search';
 import ButtonCustom from 'components/buton-custom';
 import { PATH_TEACHER_CREATE } from 'routes/routes.path';
+import IUser from 'types/users';
 import TeacherList from './list';
 
 export default function TeacherContainer() {
@@ -21,6 +22,9 @@ export default function TeacherContainer() {
     dispatch(searchUser(params));
   };
   const { user } = useSelector((state: RootState) => state.user);
+  const teacherData: IUser[] = user.filter(
+    (item: IUser) => item.role === 1,
+  );
 
   useEffect(() => {
     dispatch(getUser());
@@ -37,7 +41,7 @@ export default function TeacherContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TeacherList teacherList={user} />
+        <TeacherList teacherList={teacherData} />
       </Grid>
     </Box>
   );

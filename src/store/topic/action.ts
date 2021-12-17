@@ -59,7 +59,7 @@ export const deleteTopic =
   };
 
 export const searchTopic =
-  (keyword: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  (keyword: any) => async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
       const { data: topic } = await TopicApi.search(keyword);

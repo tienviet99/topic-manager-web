@@ -1,17 +1,21 @@
 import { useFormik } from 'formik';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { InputLabel, TextField, Typography } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import { Box } from '@mui/system';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 import ITopic from 'types/topic';
 import { teacherList } from 'constant/teacher';
 import { majorList } from 'constant/major';
 import ButtonConfirm from 'components/button-confirm';
 import Switch from 'components/switch';
+import { getUser } from 'store/user/action';
+import IUser from 'types/users';
 import { topicSchema } from './topic-form.schema';
 import styles from './form.module.css';
 
@@ -20,6 +24,7 @@ interface TopicFormProps {
 }
 
 export default function TopicForm({ mode }: TopicFormProps) {
+  const dispatch = useDispatch();
   const [majorValues, setMajorValues] = useState<string>('');
   const [teacherValue, setTeacherValue] = useState<string>('');
   const [statusSwitch, setStatusSwitch] = useState<boolean>(true);
@@ -50,6 +55,11 @@ export default function TopicForm({ mode }: TopicFormProps) {
       status: true,
     };
   }, [mode]);
+  const { user } = useSelector((state: RootState) => state.user);
+  const teacherData: IUser[] = user.filter(
+    (item: IUser) => item.role === 1,
+  );
+  // const teacherName = teacherData.map((item: IUser) => {item.name})
 
   const hanldeChangleSwitch = (value: boolean): void => {
     setStatusSwitch(value);
@@ -73,9 +83,15 @@ export default function TopicForm({ mode }: TopicFormProps) {
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
+    validationSchema: topicSchema,
     onSubmit: handleSubmit,
-    // validationSchema: topicSchema,
   });
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  console.log('teacherData: ', teacherData);
   return (
     <form onSubmit={formik.handleSubmit}>
       <Box>
@@ -91,18 +107,17 @@ export default function TopicForm({ mode }: TopicFormProps) {
                 value={formik.values.topicId}
               />
             </Box>
-            {/* {formik.touched.topicId && formik.errors.topicId ? (
+            {formik.touched.topicId && formik.errors.topicId ? (
               <span className={styles.error}>
                 {formik.errors.topicId}
               </span>
-            ) : null} */}
+            ) : null}
           </Box>
           <Box className="mx-3 w-full text-left">
             <Box className="w-full">
               <FormControl variant="standard" className="w-full">
                 <InputLabel id="major">Teacher *</InputLabel>
                 <Select
-                  labelId="teacher"
                   id="select-teacher"
                   value={teacherValue}
                   onChange={handleChangeTeacher}
@@ -117,15 +132,15 @@ export default function TopicForm({ mode }: TopicFormProps) {
                   ))}
                 </Select>
               </FormControl>
-              {/* {formik.touched.major && formik.errors.major ? (
+              {formik.touched.major && formik.errors.major ? (
                 <span className={styles.error}>
                   {formik.errors.major}
                 </span>
-              ) : null} */}
+              ) : null}
             </Box>
           </Box>
         </Box>
-        <Box className="my-9 mx-3 text-left">
+        {/* <Box className="my-9 mx-3 text-left">
           <Box className="w-full">
             <TextField
               fullWidth
@@ -138,11 +153,11 @@ export default function TopicForm({ mode }: TopicFormProps) {
               value={formik.values.name}
             />
           </Box>
-          {/* {formik.touched.name && formik.errors.name ? (
+          {formik.touched.name && formik.errors.name ? (
             <span className={styles.error}>{formik.errors.name}</span>
-          ) : null} */}
-        </Box>
-        <Box className="flex my-9">
+          ) : null}
+        </Box> */}
+        {/* <Box className="flex my-9">
           <Box className="mx-3 w-full text-left">
             <TextField
               fullWidth
@@ -181,8 +196,8 @@ export default function TopicForm({ mode }: TopicFormProps) {
               }}
             />
           </Box>
-        </Box>
-        <Box className="my-9 mx-3 text-left">
+        </Box> */}
+        {/* <Box className="my-9 mx-3 text-left">
           <Box className="w-full">
             <TextField
               fullWidth
@@ -194,13 +209,13 @@ export default function TopicForm({ mode }: TopicFormProps) {
               value={formik.values.description}
             />
           </Box>
-          {/* {formik.touched.description && formik.errors.description ? (
+          {formik.touched.description && formik.errors.description ? (
             <span className={styles.error}>
               {formik.errors.description}
             </span>
-          ) : null} */}
-        </Box>
-        <Box className="my-9 mx-3 text-left">
+          ) : null}
+        </Box> */}
+        {/* <Box className="my-9 mx-3 text-left">
           <Box className="w-full">
             <TextField
               fullWidth
@@ -213,11 +228,11 @@ export default function TopicForm({ mode }: TopicFormProps) {
               value={formik.values.link}
             />
           </Box>
-          {/* {formik.touched.link && formik.errors.link ? (
+          {formik.touched.link && formik.errors.link ? (
             <span className={styles.error}>{formik.errors.link}</span>
-          ) : null} */}
-        </Box>
-        <Box className="flex my-9 mx-3 text-left">
+          ) : null}
+        </Box> */}
+        {/* <Box className="flex my-9 mx-3 text-left">
           <Box className="w-full">
             <FormControl variant="standard" className="w-full">
               <InputLabel id="major">Major *</InputLabel>
@@ -237,11 +252,11 @@ export default function TopicForm({ mode }: TopicFormProps) {
                 ))}
               </Select>
             </FormControl>
-            {/* {formik.touched.major && formik.errors.major ? (
+            {formik.touched.major && formik.errors.major ? (
               <span className={styles.error}>
                 {formik.errors.major}
               </span>
-            ) : null} */}
+            ) : null}
           </Box>
           <Box className="mx-3 w-full text-left flex justify-start items-end">
             <Box className="mr-6">
@@ -251,7 +266,7 @@ export default function TopicForm({ mode }: TopicFormProps) {
             </Box>
             <Switch onChange={hanldeChangleSwitch} isChecked={true} />
           </Box>
-        </Box>
+        </Box> */}
 
         <Box className="flex justify-end mt-24 mb-3 mr-2">
           <ButtonConfirm label="Submit" type="submit" />

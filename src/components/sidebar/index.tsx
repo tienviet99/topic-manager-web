@@ -83,64 +83,72 @@ export default function Sidebar() {
               <ViewListIcon />
               <Box className="ml-2">Topic</Box>
             </Box>
-            <Box className="">
-              {open ? (
-                <KeyboardArrowUpIcon />
-              ) : (
-                <KeyboardArrowDownIcon />
-              )}
-            </Box>
+            {profileUser.role !== 2 ? (
+              <Box className="">
+                {open ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
+              </Box>
+            ) : null}
           </Box>
         </Link>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <NavLink
-            activeClassName={styles.active_link}
-            to={PATH_TOPIC_LIST}
-            className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
-          >
-            <div className={styles.button}> </div>
-            <Box className="mx-2 ml-5 flex">
-              <ListAltIcon />
-              <Box className="ml-2">List Topic</Box>
+        {profileUser.role !== 2 ? (
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <NavLink
+              activeClassName={styles.active_link}
+              to={PATH_TOPIC_LIST}
+              className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
+            >
+              <div className={styles.button}> </div>
+              <Box className="mx-2 ml-5 flex">
+                <ListAltIcon />
+                <Box className="ml-2">List Topic</Box>
+              </Box>
+            </NavLink>
+            <NavLink
+              activeClassName={styles.active_link}
+              to={PATH_TOPIC_USER}
+              className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
+            >
+              <div className={styles.button}> </div>
+              <Box className="mx-2 ml-5 flex">
+                <TopicIcon />
+                <Box className="ml-2">My Topic</Box>
+              </Box>
+            </NavLink>
+            <Box className="mx-7">
+              <Divider className="bg-white" />
             </Box>
-          </NavLink>
-          <NavLink
-            activeClassName={styles.active_link}
-            to={PATH_TOPIC_USER}
-            className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
-          >
-            <div className={styles.button}> </div>
-            <Box className="mx-2 ml-5 flex">
-              <TopicIcon />
-              <Box className="ml-2">My Topic</Box>
-            </Box>
-          </NavLink>
-          <Box className="mx-7">
-            <Divider className="bg-white" />
-          </Box>
-        </Collapse>
-        <NavLink
-          activeClassName={styles.active_link}
-          to={PATH_STUDENT}
-          className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
-        >
-          <div className={styles.button}> </div>
-          <Box className="mx-2 flex">
-            <PeopleIcon />
-            <Box className="ml-2">Student</Box>
-          </Box>
-        </NavLink>
-        <NavLink
-          activeClassName={styles.active_link}
-          to={PATH_TEACHER}
-          className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
-        >
-          <div className={styles.button}> </div>
-          <Box className="mx-2 flex">
-            <PeopleOutlineIcon />
-            <Box className="ml-2">Teacher</Box>
-          </Box>
-        </NavLink>
+          </Collapse>
+        ) : null}
+        {profileUser.role === 2 ? (
+          <>
+            <NavLink
+              activeClassName={styles.active_link}
+              to={PATH_STUDENT}
+              className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
+            >
+              <div className={styles.button}> </div>
+              <Box className="mx-2 flex">
+                <PeopleIcon />
+                <Box className="ml-2">Student</Box>
+              </Box>
+            </NavLink>
+            <NavLink
+              activeClassName={styles.active_link}
+              to={PATH_TEACHER}
+              className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
+            >
+              <div className={styles.button}> </div>
+              <Box className="mx-2 flex">
+                <PeopleOutlineIcon />
+                <Box className="ml-2">Teacher</Box>
+              </Box>
+            </NavLink>
+          </>
+        ) : null}
       </nav>
       <nav className=" absolute bottom-0 pb-5 w-11/12 text-center">
         <NavLink

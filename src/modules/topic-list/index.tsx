@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from 'store';
-import { getTopic } from 'store/topic/action';
+import { getTopic, searchTopic } from 'store/topic/action';
 import { useEffect } from 'react';
 
 import Search from 'components/search';
@@ -14,7 +14,12 @@ import TopicList from './list';
 export default function TopicListContainer() {
   const dispatch = useDispatch();
   const { topic } = useSelector((state: RootState) => state.topic);
-  const hanldeSubmit = (): void => {};
+  const hanldeSubmit = (e: string): void => {
+    const params = {
+      keyword: `${e}`,
+    };
+    dispatch(searchTopic(params));
+  };
 
   useEffect(() => {
     dispatch(getTopic());

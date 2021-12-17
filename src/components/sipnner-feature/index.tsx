@@ -10,7 +10,7 @@ export default function SpinnerFeature({ ...props }: SpinnerProps) {
   return (
     <Box
       className="bg-white w-screen h-screen bg-opacity-50 rounded-md"
-      style={{ width: '1500px', height: '900px' }}
+      style={{ width: '1530px', height: '800px' }}
     >
       <div className={styles.loader} {...props} />
     </Box>

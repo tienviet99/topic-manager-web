@@ -6,9 +6,7 @@ import SpinnerFeature from 'components/sipnner-feature';
 import UserProfile from 'modules/user-profile';
 
 export default function User() {
-  const { loading }: any = useSelector(
-    (state: RootState) => state.user,
-  );
+  const { loading } = useSelector((state: RootState) => state.user);
 
   return (
     <Box className="ml-10 relative">

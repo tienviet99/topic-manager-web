@@ -1,7 +1,9 @@
+import IUser from './users';
+
 export default interface ITopic {
   topicId: string;
   name: string;
-  teacherName: string;
+  teacherId: IUser;
   start_date: string;
   end_date: string;
   description: string;

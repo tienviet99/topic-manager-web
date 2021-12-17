@@ -12,6 +12,7 @@ import {
   LOGIN,
   GET_PROFILE,
   LOGOUT,
+  REJECTED,
 } from './constant';
 
 interface InitialState {
@@ -90,6 +91,8 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
         isLoggedIn: false,
       };
     }
+    case REJECTED:
+      return { ...state, loading: false };
     default:
       return state;
   }

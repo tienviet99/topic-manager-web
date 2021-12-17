@@ -23,10 +23,7 @@ export default function LoginForm() {
   );
 
   useEffect(() => {
-    if (isLoggedIn) {
-      history.replace('/');
-    }
-    if (isCheck) {
+    if (isLoggedIn || isCheck) {
       history.replace('/');
     }
   }, [isCheck, isLoggedIn]);
@@ -36,7 +33,6 @@ export default function LoginForm() {
       userId: values.userId,
       password: values.password,
     };
-    console.log(submitData);
     dispatch(login(submitData));
   };
   const formik = useFormik({
