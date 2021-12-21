@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Box, TextField, Typography } from '@mui/material';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonConfirm from 'components/button/button-confirm';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

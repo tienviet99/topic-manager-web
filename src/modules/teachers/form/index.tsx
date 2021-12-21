@@ -9,7 +9,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import IUser from 'types/users';
 import { majorList } from 'constant/major';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonConfirm from 'components/button/button-confirm';
 import { studentSchema } from './student-form.schema';
 import styles from './form.module.css';
 

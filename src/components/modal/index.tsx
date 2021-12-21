@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Divider } from '@mui/material';
-import ButtonCancel from 'components/button-cancel';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonCancel from 'components/button/button-cancel';
+import ButtonConfirm from 'components/button/button-confirm';
 
 import styles from './modal.module.css';
 

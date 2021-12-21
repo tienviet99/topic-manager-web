@@ -1,11 +1,14 @@
 import { Box, Divider } from '@mui/material';
 import TopicForm from 'modules/topic-list/form';
 import { PATH_TOPIC_LIST } from 'routes/routes.path';
-import ButtonBack from 'components/button-back';
+import ButtonBack from 'components/button/button-back';
+import { useState } from 'react';
+import Notification from 'components/notification';
 
 export default function TopicCreate() {
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   return (
-    <Box>
+    <Box className="relative">
       <Box className="mb-5 w-12">
         <ButtonBack to={PATH_TOPIC_LIST} />
       </Box>
@@ -19,8 +22,17 @@ export default function TopicCreate() {
         <Box className="text-xl flex mb-3 ml-3">
           Please ennter for all text field
         </Box>
-        <TopicForm mode="create" />
+        <TopicForm
+          mode="create"
+          handleSuccess={setIsSuccess}
+          onSuccess={isSuccess}
+        />
       </Box>
+      {isSuccess ? (
+        <Box className="absolute top-0 right-0">
+          <Notification status="success" />
+        </Box>
+      ) : null}
     </Box>
   );
 }

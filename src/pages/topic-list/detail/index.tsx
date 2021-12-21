@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material';
 import { Box } from '@mui/system';
-import ButtonBack from 'components/button-back';
+import ButtonBack from 'components/button/button-back';
 import TopicDetailContainer from 'modules/topic-list/detail';
 import { PATH_TOPIC_LIST } from 'routes/routes.path';
 

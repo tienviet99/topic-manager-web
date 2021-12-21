@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { RootState } from 'store';
 import { useHistory } from 'react-router-dom';
 
-import ButtonCancel from 'components/button-cancel';
+import ButtonCancel from 'components/button/button-cancel';
 import { logout } from 'store/user/action';
 import PopupConfirm from 'components/modal';
 import BasicInformation from './basic-information';

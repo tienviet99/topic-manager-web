@@ -11,6 +11,7 @@ import {
   DELETE_TOPIC,
   SEARCH_TOPIC,
   SEARCH_TOPIC_STATUS,
+  GET_TOPIC_BY_ID,
 } from './constant';
 
 export const getTopic =
@@ -19,6 +20,17 @@ export const getTopic =
     try {
       const { data: topic } = await TopicApi.getAll();
       dispatch({ type: GET_TOPIC, payload: topic });
+    } catch (error) {
+      dispatch({ type: REJECTED });
+    }
+  };
+
+export const getTopicById =
+  (_id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PENDING });
+    try {
+      const { data: topic } = await TopicApi.getTopicById(_id);
+      dispatch({ type: GET_TOPIC_BY_ID, payload: topic });
     } catch (error) {
       dispatch({ type: REJECTED });
     }
@@ -48,7 +60,8 @@ export const updateTopic =
   };
 
 export const deleteTopic =
-  (_id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  (_id: string | undefined) =>
+  async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
       await TopicApi.remove(_id);

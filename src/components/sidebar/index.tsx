@@ -72,8 +72,9 @@ export default function Sidebar() {
             <Box className="ml-2">Dashboard</Box>
           </Box>
         </NavLink>
-        <Link
+        <NavLink
           to={PATH_TOPIC_LIST}
+          activeClassName={styles.active_link}
           className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
           onClick={() => setOpen(!open)}
         >
@@ -83,7 +84,7 @@ export default function Sidebar() {
               <ViewListIcon />
               <Box className="ml-2">Topic</Box>
             </Box>
-            {profileUser.role !== 2 ? (
+            {infoUser.role !== 2 ? (
               <Box className="">
                 {open ? (
                   <KeyboardArrowUpIcon />
@@ -93,8 +94,8 @@ export default function Sidebar() {
               </Box>
             ) : null}
           </Box>
-        </Link>
-        {profileUser.role !== 2 ? (
+        </NavLink>
+        {infoUser.role !== 2 ? (
           <Collapse in={open} timeout="auto" unmountOnExit>
             <NavLink
               activeClassName={styles.active_link}
@@ -123,7 +124,7 @@ export default function Sidebar() {
             </Box>
           </Collapse>
         ) : null}
-        {profileUser.role === 2 ? (
+        {infoUser.role === 2 ? (
           <>
             <NavLink
               activeClassName={styles.active_link}
@@ -162,8 +163,8 @@ export default function Sidebar() {
               <AccountBoxIcon style={{ fontSize: '50px' }} />
             </Box>
             <Box className="ml-2">
-              <Box>{profileUser.name ? profileUser.name : null}</Box>
-              <Box>{renderSwitch(profileUser.role)}</Box>
+              <Box>{profileUser.name}</Box>
+              <Box>{renderSwitch(infoUser.role)}</Box>
             </Box>
           </Box>
         </NavLink>

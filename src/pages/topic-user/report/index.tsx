@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import ButtonBack from 'components/button-back';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonBack from 'components/button/button-back';
+import ButtonConfirm from 'components/button/button-confirm';
 import ReportForm from 'modules/topic-user/form';
 import HistoryTask from 'modules/topic-user/history';
 import ReportDetail from 'modules/topic-user/report-detail';

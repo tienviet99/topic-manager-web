@@ -4,7 +4,9 @@ import {
   ADD_TOPIC,
   DELETE_TOPIC,
   GET_TOPIC,
+  GET_TOPIC_BY_ID,
   PENDING,
+  REJECTED,
   SEARCH_TOPIC,
   SEARCH_TOPIC_STATUS,
   UPDATE_TOPIC,
@@ -13,11 +15,30 @@ import {
 interface InitialState {
   loading: boolean;
   topic: ITopic[];
+  topicRows: ITopic;
 }
 
 const initialState: InitialState = {
   loading: false,
   topic: [],
+  topicRows: {
+    topicId: '',
+    name: '',
+    teacherId: {
+      userId: '',
+      name: '',
+      date: '',
+      phone: '',
+      major: '',
+      role: 0,
+    },
+    start_date: '',
+    end_date: '',
+    description: '',
+    link: '',
+    major: '',
+    status: true,
+  },
 };
 
 const TopicReducer = (state = initialState, action: ActionTypes) => {
@@ -25,11 +46,29 @@ const TopicReducer = (state = initialState, action: ActionTypes) => {
     case PENDING:
       return { ...state, loading: true };
     case GET_TOPIC:
-      return { ...state, topic: action.payload, loading: false };
+      return {
+        ...state,
+        topic: action.payload,
+        loading: false,
+      };
+    case GET_TOPIC_BY_ID:
+      return {
+        ...state,
+        topicRows: action.payload,
+        loading: false,
+      };
     case SEARCH_TOPIC:
-      return { ...state, topic: action.payload, loading: false };
+      return {
+        ...state,
+        topic: action.payload,
+        loading: false,
+      };
     case SEARCH_TOPIC_STATUS:
-      return { ...state, topic: action.payload, loading: false };
+      return {
+        ...state,
+        topic: action.payload,
+        loading: false,
+      };
     case ADD_TOPIC:
       return {
         ...state,
@@ -53,8 +92,14 @@ const TopicReducer = (state = initialState, action: ActionTypes) => {
       const filterTopic = state.topic.filter(
         (item: ITopic) => item._id !== action.payload,
       );
-      return { ...state, topic: filterTopic, loading: false };
+      return {
+        ...state,
+        topic: filterTopic,
+        loading: false,
+      };
     }
+    case REJECTED:
+      return { ...state, loading: true, status: 'error' };
     default:
       return state;
   }

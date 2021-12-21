@@ -18,6 +18,7 @@ interface StudentListProps {
 export default function TeacherList(props: StudentListProps) {
   const { teacherList } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
   const hanldeOpenMedal = (): void => {
     setIsOpen(!isOpen);
   };
@@ -51,6 +52,8 @@ export default function TeacherList(props: StudentListProps) {
       <Table
         loading={false}
         data={teacherList}
+        page={page}
+        setPage={setPage}
         head={<StudentTableHead />}
         colSpan={6}
         renderRows={renderRows}

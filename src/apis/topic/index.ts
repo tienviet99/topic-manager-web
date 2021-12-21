@@ -6,6 +6,10 @@ const TopicApi = {
     const url: string = `/topic/list`;
     return axiosClient.get(url);
   },
+  getTopicById(_id: string) {
+    const url: string = `/topic/${_id}`;
+    return axiosClient.get(url);
+  },
   add(topic: ITopic) {
     const url: string = `/topic/create`;
     return axiosClient.post(url, topic);
@@ -14,7 +18,7 @@ const TopicApi = {
     const url: string = `/topic/edit/${_id}`;
     return axiosClient.put(url, topic);
   },
-  remove(_id: string) {
+  remove(_id: string | undefined) {
     const url: string = `/topic/delete/${_id}`;
     return axiosClient.delete(url);
   },

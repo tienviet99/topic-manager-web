@@ -1,6 +1,6 @@
 import { Box, Divider } from '@mui/material';
 import { PATH_TEACHER } from 'routes/routes.path';
-import ButtonBack from 'components/button-back';
+import ButtonBack from 'components/button/button-back';
 import TeacherForm from 'modules/teachers/form';
 
 export default function TeacherEdit() {

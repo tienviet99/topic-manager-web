@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonConfirm from 'components/button/button-confirm';
 
 export default function ReportForm() {
   return (

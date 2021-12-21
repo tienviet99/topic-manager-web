@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
-import ButtonBack from 'components/button-back';
+import ButtonBack from 'components/button/button-back';
 import TopicUserDetail from 'modules/topic-user/detail';
 import Task from 'modules/topic-user/task';
 import { PATH_TOPIC_USER } from 'routes/routes.path';

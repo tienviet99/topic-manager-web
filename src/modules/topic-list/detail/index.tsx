@@ -1,6 +1,6 @@
 import { Link, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonConfirm from 'components/button/button-confirm';
 import React from 'react';
 
 export default function TopicDetailContainer() {

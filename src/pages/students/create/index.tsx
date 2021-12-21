@@ -1,6 +1,6 @@
 import { Box, Divider } from '@mui/material';
 import { PATH_STUDENT } from 'routes/routes.path';
-import ButtonBack from 'components/button-back';
+import ButtonBack from 'components/button/button-back';
 import StudentForm from 'modules/students/form';
 
 export default function StudentCreate() {

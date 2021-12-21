@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Divider } from '@mui/material';
 
-import ButtonCancel from 'components/button-cancel';
+import ButtonCancel from 'components/button/button-cancel';
 import { history } from './history.data';
 import styles from './history.module.css';
 

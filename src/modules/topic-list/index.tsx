@@ -7,11 +7,17 @@ import { getTopic, searchTopic } from 'store/topic/action';
 import { useEffect } from 'react';
 
 import Search from 'components/search';
-import ButtonCustom from 'components/buton-custom';
+import ButtonCustom from 'components/button/buton-custom';
 import { PATH_TOPIC_CREATE } from 'routes/routes.path';
 import TopicList from './list';
 
-export default function TopicListContainer() {
+interface TopicListContainerProps {
+  handleSuccess: Function;
+}
+export default function TopicListContainer(
+  props: TopicListContainerProps,
+) {
+  const { handleSuccess } = props;
   const dispatch = useDispatch();
   const { topic } = useSelector((state: RootState) => state.topic);
   const hanldeSubmit = (e: string): void => {
@@ -36,7 +42,7 @@ export default function TopicListContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TopicList topicList={topic} />
+        <TopicList topicList={topic} handleSuccess={handleSuccess} />
       </Grid>
     </Box>
   );

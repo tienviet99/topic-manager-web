@@ -21,6 +21,8 @@ interface TableProp extends TableProps {
   colSpan: number;
   data: any[];
   renderRows: Function;
+  page: number;
+  setPage: Function;
 }
 
 export default function Table({
@@ -29,8 +31,10 @@ export default function Table({
   data,
   colSpan,
   renderRows,
+  page,
+  setPage,
 }: TableProp) {
-  const [page, setPage] = useState<number>(0);
+  // const [page, setPage] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(10);
 
   function handleChangePage(
@@ -80,7 +84,7 @@ export default function Table({
         </TableRow>
       );
     }
-    return currentDataList.map((item) => renderRows(item));
+    return currentDataList.map((item: any) => renderRows(item));
   }
 
   return (

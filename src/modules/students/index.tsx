@@ -7,7 +7,7 @@ import { RootState } from 'store';
 import { getUser, searchUser } from 'store/user/action';
 
 import Search from 'components/search';
-import ButtonCustom from 'components/buton-custom';
+import ButtonCustom from 'components/button/buton-custom';
 import { PATH_STUDENT_CREATE } from 'routes/routes.path';
 import IUser from 'types/users';
 import StudentList from './list';

@@ -4,7 +4,7 @@ import { TableCell, TableRow } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { PATH_TOPIC_USER_CONTAINER } from 'routes/routes.path';
-import ButtonConfirm from 'components/button-confirm';
+import ButtonConfirm from 'components/button/button-confirm';
 import Table from 'components/table';
 import styles from './topic-user-list.module.css';
 import TopicUserTableHead from './topic-user.table-head';
@@ -15,6 +15,7 @@ interface TopicUserListProps {
 
 export default function TopicUserList(props: TopicUserListProps) {
   const { topicUserListData } = props;
+  const [page, setPage] = useState<number>(0);
   function renderRows(item: any) {
     return (
       <TableRow key={item.id} className="w-full">
@@ -41,6 +42,8 @@ export default function TopicUserList(props: TopicUserListProps) {
       <Table
         loading={false}
         data={topicUserListData}
+        page={page}
+        setPage={setPage}
         head={<TopicUserTableHead />}
         colSpan={6}
         renderRows={renderRows}

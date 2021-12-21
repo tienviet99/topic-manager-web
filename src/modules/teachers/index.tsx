@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { RootState } from 'store';
 
 import Search from 'components/search';
-import ButtonCustom from 'components/buton-custom';
+import ButtonCustom from 'components/button/buton-custom';
 import { PATH_TEACHER_CREATE } from 'routes/routes.path';
 import IUser from 'types/users';
 import TeacherList from './list';
