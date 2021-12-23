@@ -22,7 +22,7 @@ const UserApi = {
     const url: string = `/user/update/${_id}`;
     return axiosClient.put(url, user);
   },
-  remove(_id: string) {
+  remove(_id: string | undefined) {
     const url: string = `/user/delete/${_id}`;
     return axiosClient.delete(url);
   },

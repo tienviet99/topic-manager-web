@@ -35,7 +35,7 @@ export default function Sidebar() {
     `${localStorage.getItem('infoUser')}`,
   );
   const profileUser: any = Object(profile[0]);
-  const renderSwitch = (param: number): string => {
+  const renderRole = (param: number): string => {
     switch (param) {
       case 0:
         return 'Student';
@@ -164,7 +164,7 @@ export default function Sidebar() {
             </Box>
             <Box className="ml-2">
               <Box>{profileUser.name}</Box>
-              <Box>{renderSwitch(infoUser.role)}</Box>
+              <Box>{renderRole(infoUser.role)}</Box>
             </Box>
           </Box>
         </NavLink>

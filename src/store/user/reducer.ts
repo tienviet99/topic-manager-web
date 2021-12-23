@@ -75,7 +75,7 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
       const filterUsers = state.user.filter(
         (item: IUser) => item._id !== action.payload,
       );
-      return { ...state, users: filterUsers, loading: false };
+      return { ...state, user: filterUsers, loading: false };
     }
     case LOGIN: {
       return {

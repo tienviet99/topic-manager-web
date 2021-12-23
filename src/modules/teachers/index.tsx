@@ -12,7 +12,14 @@ import { PATH_TEACHER_CREATE } from 'routes/routes.path';
 import IUser from 'types/users';
 import TeacherList from './list';
 
-export default function TeacherContainer() {
+interface TeacherContainerProps {
+  handleSuccess: Function;
+}
+
+export default function TeacherContainer(
+  props: TeacherContainerProps,
+) {
+  const { handleSuccess } = props;
   const dispatch = useDispatch();
 
   const hanldeSubmit = (e: string): void => {
@@ -41,7 +48,10 @@ export default function TeacherContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TeacherList teacherList={teacherData} />
+        <TeacherList
+          teacherList={teacherData}
+          handleSuccess={handleSuccess}
+        />
       </Grid>
     </Box>
   );

@@ -7,10 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useDispatch } from 'react-redux';
 
-import {
-  PATH_TOPIC_DETAIL,
-  PATH_TOPIC_EDIT,
-} from 'routes/routes.path';
+import { PATH_TOPIC_DETAIL } from 'routes/routes.path';
 import Table from 'components/table';
 import ITopic from 'types/topic';
 import PopupConfirm from 'components/modal';

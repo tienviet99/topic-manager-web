@@ -1,11 +1,14 @@
 import { Box, Divider } from '@mui/material';
 import { PATH_TEACHER } from 'routes/routes.path';
 import ButtonBack from 'components/button/button-back';
-import TeacherForm from 'modules/teachers/form';
+import UserForm from 'modules/user-form';
+import { useState } from 'react';
+import Notification from 'components/notification';
 
 export default function TeacherEdit() {
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   return (
-    <Box>
+    <Box className="relative">
       <Box className="mb-5 w-12">
         <ButtonBack to={PATH_TEACHER} />
       </Box>
@@ -19,8 +22,18 @@ export default function TeacherEdit() {
         <Box className="text-xl flex mb-3 ml-3">
           Please ennter for all text field
         </Box>
-        <TeacherForm mode="edit" />
+        <UserForm
+          mode="edit"
+          roles={1}
+          handleSuccess={setIsSuccess}
+          onSuccess={isSuccess}
+        />
       </Box>
+      {isSuccess ? (
+        <Box className="absolute top-0 right-0">
+          <Notification status="success" />
+        </Box>
+      ) : null}
     </Box>
   );
 }

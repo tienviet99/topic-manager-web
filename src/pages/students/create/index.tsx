@@ -1,11 +1,14 @@
 import { Box, Divider } from '@mui/material';
 import { PATH_STUDENT } from 'routes/routes.path';
 import ButtonBack from 'components/button/button-back';
-import StudentForm from 'modules/students/form';
+import UserForm from 'modules/user-form';
+import { useState } from 'react';
+import Notification from 'components/notification';
 
 export default function StudentCreate() {
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   return (
-    <Box>
+    <Box className="relative">
       <Box className="mb-5 w-12">
         <ButtonBack to={PATH_STUDENT} />
       </Box>
@@ -21,8 +24,18 @@ export default function StudentCreate() {
         <Box className="text-xl flex mb-3 ml-3">
           Please ennter for all text field
         </Box>
-        <StudentForm mode="create" />
+        <UserForm
+          mode="create"
+          roles={0}
+          handleSuccess={setIsSuccess}
+          onSuccess={isSuccess}
+        />
       </Box>
+      {isSuccess ? (
+        <Box className="absolute top-0 right-0">
+          <Notification status="success" />
+        </Box>
+      ) : null}
     </Box>
   );
 }

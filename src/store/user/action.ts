@@ -87,7 +87,8 @@ export const updateUser =
   };
 
 export const deleteUser =
-  (_id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  (_id: string | undefined) =>
+  async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
       await UserApi.remove(_id);
