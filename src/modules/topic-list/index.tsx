@@ -12,12 +12,12 @@ import { PATH_TOPIC_CREATE } from 'routes/routes.path';
 import TopicList from './list';
 
 interface TopicListContainerProps {
-  handleSuccess: Function;
+  handleNoti: Function;
 }
 export default function TopicListContainer(
   props: TopicListContainerProps,
 ) {
-  const { handleSuccess } = props;
+  const { handleNoti } = props;
   const dispatch = useDispatch();
   const { topic } = useSelector((state: RootState) => state.topic);
   const hanldeSubmit = (e: string): void => {
@@ -42,7 +42,7 @@ export default function TopicListContainer(
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TopicList topicList={topic} handleSuccess={handleSuccess} />
+        <TopicList topicList={topic} handleNoti={handleNoti} />
       </Grid>
     </Box>
   );

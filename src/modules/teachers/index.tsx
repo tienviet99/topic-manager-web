@@ -13,13 +13,13 @@ import IUser from 'types/users';
 import TeacherList from './list';
 
 interface TeacherContainerProps {
-  handleSuccess: Function;
+  handleNoti: Function;
 }
 
 export default function TeacherContainer(
   props: TeacherContainerProps,
 ) {
-  const { handleSuccess } = props;
+  const { handleNoti } = props;
   const dispatch = useDispatch();
 
   const hanldeSubmit = (e: string): void => {
@@ -50,7 +50,7 @@ export default function TeacherContainer(
       <Grid xs={12} className="mt-8">
         <TeacherList
           teacherList={teacherData}
-          handleSuccess={handleSuccess}
+          handleNoti={handleNoti}
         />
       </Grid>
     </Box>

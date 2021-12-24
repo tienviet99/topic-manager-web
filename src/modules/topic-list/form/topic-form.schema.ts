@@ -3,10 +3,7 @@ import * as Yup from 'yup';
 export const topicSchema = Yup.object().shape({
   topicId: Yup.string()
     .required('Please enter Topic ID')
-    .matches(
-      /(TP)+[1234567890]/,
-      'TopicId must start with TP + number',
-    ),
+    .matches(/(TP)+[0-9]/, 'Topic ID must start with TP + number'),
   name: Yup.string()
     .required('Please enter name')
     .max(150, 'Name must be less than 150 words'),

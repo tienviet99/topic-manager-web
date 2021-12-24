@@ -17,7 +17,7 @@ import styles from './topic-list.module.css';
 
 interface TopicListProps {
   topicList: any;
-  handleSuccess: Function;
+  handleNoti: Function;
 }
 
 export default function TopicList(props: TopicListProps) {
@@ -25,7 +25,7 @@ export default function TopicList(props: TopicListProps) {
   const infoUser: any = JSON.parse(
     `${localStorage.getItem('infoUser')}`,
   );
-  const { topicList, handleSuccess } = props;
+  const { topicList, handleNoti } = props;
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
@@ -38,13 +38,13 @@ export default function TopicList(props: TopicListProps) {
     setIsOpen(!isOpen);
   };
   const handleConfirmModal = async (id: string | undefined) => {
-    dispatch(deleteTopic(id));
     setIsOpen(!isOpen);
-    handleSuccess(true);
     setPage(0);
-    await setTimeout(() => {
-      handleSuccess(false);
-    }, 4000);
+    dispatch(deleteTopic(id));
+    await handleNoti('success');
+    // await setTimeout(() => {
+    //   handleNoti('info');
+    // }, 4000);
   };
   function renderRows(item: ITopic) {
     return (
@@ -55,7 +55,7 @@ export default function TopicList(props: TopicListProps) {
         </TableCell>
         <TableCell className="w-1/12">{item.major}</TableCell>
         <TableCell className="w-2/12">
-          {item.teacherId.name}
+          {/* {item.teacherId.name} */}
         </TableCell>
         <TableCell className="w-1/12" align="center">
           {item.status ? (

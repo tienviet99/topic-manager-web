@@ -6,7 +6,9 @@ import { useState } from 'react';
 import Notification from 'components/notification';
 
 export default function StudentCreate() {
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [noti, setNoti] = useState<
+    'error' | 'warning' | 'info' | 'success'
+  >('info');
   return (
     <Box className="relative">
       <Box className="mb-5 w-12">
@@ -27,13 +29,13 @@ export default function StudentCreate() {
         <UserForm
           mode="create"
           roles={0}
-          handleSuccess={setIsSuccess}
-          onSuccess={isSuccess}
+          handleNoti={setNoti}
+          noti={noti}
         />
       </Box>
-      {isSuccess ? (
+      {noti !== 'info' ? (
         <Box className="absolute top-0 right-0">
-          <Notification status="success" />
+          <Notification status={noti} />
         </Box>
       ) : null}
     </Box>

@@ -14,11 +14,11 @@ import StudentTableHead from './student.table-head';
 
 interface StudentListProps {
   teacherList: any;
-  handleSuccess: Function;
+  handleNoti: Function;
 }
 
 export default function TeacherList(props: StudentListProps) {
-  const { teacherList, handleSuccess } = props;
+  const { teacherList, handleNoti } = props;
   console.log('teacherList: ', teacherList);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -33,13 +33,13 @@ export default function TeacherList(props: StudentListProps) {
     setIsOpen(!isOpen);
   };
   const handleConfirmModal = async (id: string | undefined) => {
-    dispatch(deleteUser(id));
     setIsOpen(!isOpen);
-    handleSuccess(true);
+    dispatch(deleteUser(id));
+    handleNoti('success');
     setPage(0);
-    await setTimeout(() => {
-      handleSuccess(false);
-    }, 4000);
+    // await setTimeout(() => {
+    //   handleNoti(false);
+    // }, 4000);
   };
   function renderRows(item: IUser) {
     return (

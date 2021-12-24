@@ -14,10 +14,11 @@ import StudentTableHead from './student.table-head';
 
 interface StudentListProps {
   studentList: any;
+  handleNoti: Function;
 }
 
 export default function StudentList(props: StudentListProps) {
-  const { studentList } = props;
+  const { studentList, handleNoti } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
   const hanldeOpenMedal = (): void => {

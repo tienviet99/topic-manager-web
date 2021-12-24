@@ -23,12 +23,12 @@ import styles from './form.module.css';
 
 interface TopicFormProps {
   mode: 'create' | 'edit';
-  handleSuccess: Function;
-  onSuccess: boolean;
+  handleNoti: Function;
+  noti: string;
 }
 
 export default function TopicForm(props: TopicFormProps) {
-  const { mode, handleSuccess, onSuccess } = props;
+  const { mode, handleNoti, noti } = props;
   const dispatch = useDispatch();
   const history = useHistory();
   const { _id } = useParams<{ _id: string }>();
@@ -37,7 +37,7 @@ export default function TopicForm(props: TopicFormProps) {
   const { topicRows } = useSelector(
     (state: RootState) => state.topic,
   );
-  const topicData: ITopic = Object(topicRows[0]);
+  const topicData: ITopic = Object(topicRows);
 
   useEffect(() => {
     dispatch(getUser());
@@ -99,7 +99,7 @@ export default function TopicForm(props: TopicFormProps) {
       if (mode === 'create') {
         dispatch(addTopic(submitData));
       }
-      handleSuccess(true);
+      handleNoti('success');
       setTimeout(() => {
         history.push('/topic/list');
       }, 2000);
@@ -320,7 +320,7 @@ export default function TopicForm(props: TopicFormProps) {
           </Box>
         </Box>
         <Box className="flex justify-end mt-24 mb-3 mr-2">
-          {!onSuccess ? (
+          {noti === 'info' ? (
             <ButtonConfirm label="Submit" type="submit" />
           ) : (
             <Box className="absolute top-20 right-14">

@@ -20,12 +20,12 @@ import styles from './form.module.css';
 interface UserFormProps {
   mode: 'create' | 'edit';
   roles: 0 | 1 | 2;
-  handleSuccess: Function;
-  onSuccess: boolean;
+  handleNoti: Function;
+  noti: string;
 }
 
 export default function UserForm(props: UserFormProps) {
-  const { mode, roles, handleSuccess, onSuccess } = props;
+  const { mode, roles, handleNoti, noti } = props;
   const dispatch = useDispatch();
   const history = useHistory();
   const [majorValues, setMajorValues] = useState<string>('');
@@ -93,10 +93,10 @@ export default function UserForm(props: UserFormProps) {
         dispatch(addUser(submitData));
         console.log('submitData: ', submitData);
       }
-      handleSuccess(true);
-      setTimeout(() => {
-        history.push('/teacher');
-      }, 2000);
+      handleNoti('success');
+      // setTimeout(() => {
+      //   history.push('/teacher');
+      // }, 2000);
       setErrDate(false);
     } else setErrDate(true);
   };
@@ -238,7 +238,7 @@ export default function UserForm(props: UserFormProps) {
           </Box>
         </Box>
         <Box className="flex justify-end mt-24 mb-3 mr-2">
-          {!onSuccess ? (
+          {noti === 'info' ? (
             <ButtonConfirm label="Submit" type="submit" />
           ) : (
             <Box className="absolute top-20 right-14">

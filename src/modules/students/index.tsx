@@ -12,7 +12,14 @@ import { PATH_STUDENT_CREATE } from 'routes/routes.path';
 import IUser from 'types/users';
 import StudentList from './list';
 
-export default function StudentContainer() {
+interface StudentContainerProps {
+  handleNoti: Function;
+}
+
+export default function StudentContainer(
+  props: StudentContainerProps,
+) {
+  const { handleNoti } = props;
   const dispatch = useDispatch();
   const hanldeSubmit = (e: any): void => {
     const params = {
@@ -40,7 +47,10 @@ export default function StudentContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <StudentList studentList={studentData} />
+        <StudentList
+          studentList={studentData}
+          handleNoti={handleNoti}
+        />
       </Grid>
     </Box>
   );

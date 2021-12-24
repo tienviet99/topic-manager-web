@@ -6,7 +6,9 @@ import { useState } from 'react';
 import Notification from 'components/notification';
 
 export default function TopicEdit() {
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [noti, setNoti] = useState<
+    'error' | 'warning' | 'info' | 'success'
+  >('info');
   return (
     <Box>
       <Box className="mb-5 w-12">
@@ -22,13 +24,9 @@ export default function TopicEdit() {
         <Box className="text-xl flex mb-3 ml-3">
           Please ennter for all text field
         </Box>
-        <TopicForm
-          mode="edit"
-          handleSuccess={setIsSuccess}
-          onSuccess={isSuccess}
-        />
+        <TopicForm mode="edit" handleNoti={setNoti} noti={noti} />
       </Box>
-      {isSuccess ? (
+      {noti !== 'info' ? (
         <Box className="absolute top-0 right-0">
           <Notification status="success" />
         </Box>

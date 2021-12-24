@@ -6,7 +6,9 @@ import { useState } from 'react';
 import Notification from 'components/notification';
 
 export default function TopicCreate() {
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [noti, setNoti] = useState<
+    'error' | 'warning' | 'info' | 'success'
+  >('info');
   return (
     <Box className="relative">
       <Box className="mb-5 w-12">
@@ -22,15 +24,11 @@ export default function TopicCreate() {
         <Box className="text-xl flex mb-3 ml-3">
           Please ennter for all text field
         </Box>
-        <TopicForm
-          mode="create"
-          handleSuccess={setIsSuccess}
-          onSuccess={isSuccess}
-        />
+        <TopicForm mode="create" handleNoti={setNoti} noti={noti} />
       </Box>
-      {isSuccess ? (
+      {noti !== 'info' ? (
         <Box className="absolute top-0 right-0">
-          <Notification status="success" />
+          <Notification status={noti} />
         </Box>
       ) : null}
     </Box>
