@@ -29,7 +29,7 @@ export default function TeacherContainer(
     dispatch(searchUser(params));
   };
   const { user } = useSelector((state: RootState) => state.user);
-  const teacherData: IUser[] = user.filter(
+  const teacherData: IUser[] = Object(user).filter(
     (item: IUser) => item.role === 1,
   );
 

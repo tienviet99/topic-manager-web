@@ -11,5 +11,6 @@ export const userSchema = Yup.object({
     .required('Please enter name')
     .max(150, 'Name must be less than 150 words'),
   date: Yup.string().required('Please choose date'),
-  phone: Yup.number().required('Please enter phone'),
+  major: Yup.string().required('Please choose major'),
+  phone: Yup.string().required('Please enter phone'),
 });

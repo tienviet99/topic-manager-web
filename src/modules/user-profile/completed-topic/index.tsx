@@ -23,7 +23,6 @@ export default function CompletedTopic() {
     dispatch(getProfile(infoUser._id));
   }, [dispatch]);
 
-  console.log('Log: ', Topic);
   return (
     <Box>
       {infoUser.role === 0 ? (

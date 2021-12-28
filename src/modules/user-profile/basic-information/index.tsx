@@ -14,7 +14,7 @@ export default function BasicInformation() {
   const { profile }: any = useSelector(
     (state: RootState) => state.user,
   );
-  const profileUser: IUser = Object(profile[0]);
+  const profileUser: IUser = Object(profile);
   const infoUser: any = JSON.parse(
     `${localStorage.getItem('infoUser')}`,
   );

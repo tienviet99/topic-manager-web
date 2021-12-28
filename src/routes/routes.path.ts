@@ -1,13 +1,13 @@
 export const PATH_STUDENT = '/student';
 export const PATH_STUDENT_CREATE = '/student/create';
-export const PATH_STUDENT_EDIT = '/student/edit/:id';
+export const PATH_STUDENT_EDIT = '/student/edit/:_id';
 export const PATH_TEACHER = '/teacher';
 export const PATH_TEACHER_CREATE = '/teacher/create';
-export const PATH_TEACHER_EDIT = '/teacher/edit/:id';
+export const PATH_TEACHER_EDIT = '/teacher/edit/:_id';
 export const PATH_TOPIC_LIST = '/topic/list';
 export const PATH_TOPIC_CREATE = '/topic/list/create';
 export const PATH_TOPIC_EDIT = '/topic/list/edit/:_id';
-export const PATH_TOPIC_DETAIL = '/topic/list/detail';
+export const PATH_TOPIC_DETAIL = '/topic/list/detail/:_id';
 export const PATH_TOPIC_USER = '/topic/user';
 export const PATH_REPORT = '/topic/user/report';
 export const PATH_TOPIC_USER_CONTAINER = '/topic/user/container';

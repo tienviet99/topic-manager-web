@@ -6,7 +6,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PeopleIcon from '@mui/icons-material/People';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import { Collapse, Divider } from '@mui/material';
+import { Collapse, Divider, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import TopicIcon from '@mui/icons-material/Topic';
@@ -26,15 +26,11 @@ import styles from './sidebar.module.css';
 
 export default function Sidebar() {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-
-  const { profile }: any = useSelector(
-    (state: RootState) => state.user,
-  );
+  const { profile } = useSelector((state: RootState) => state.user);
   const infoUser: any = JSON.parse(
     `${localStorage.getItem('infoUser')}`,
   );
-  const profileUser: any = Object(profile[0]);
+  const profileUser: any = Object(profile);
   const renderRole = (param: number): string => {
     switch (param) {
       case 0:
@@ -74,9 +70,10 @@ export default function Sidebar() {
         </NavLink>
         <NavLink
           to={PATH_TOPIC_LIST}
-          activeClassName={styles.active_link}
+          activeClassName={
+            infoUser.role === 2 ? styles.active_link : ''
+          }
           className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
-          onClick={() => setOpen(!open)}
         >
           <div className={styles.button}> </div>
           <Box className="mx-2 flex justify-between w-full">
@@ -84,19 +81,11 @@ export default function Sidebar() {
               <ViewListIcon />
               <Box className="ml-2">Topic</Box>
             </Box>
-            {infoUser.role !== 2 ? (
-              <Box className="">
-                {open ? (
-                  <KeyboardArrowUpIcon />
-                ) : (
-                  <KeyboardArrowDownIcon />
-                )}
-              </Box>
-            ) : null}
+            {infoUser.role !== 2 ? <KeyboardArrowDownIcon /> : null}
           </Box>
         </NavLink>
         {infoUser.role !== 2 ? (
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Box>
             <NavLink
               activeClassName={styles.active_link}
               to={PATH_TOPIC_LIST}
@@ -122,7 +111,7 @@ export default function Sidebar() {
             <Box className="mx-7">
               <Divider className="bg-white" />
             </Box>
-          </Collapse>
+          </Box>
         ) : null}
         {infoUser.role === 2 ? (
           <>
@@ -163,7 +152,11 @@ export default function Sidebar() {
               <AccountBoxIcon style={{ fontSize: '50px' }} />
             </Box>
             <Box className="ml-2">
-              <Box>{profileUser.name}</Box>
+              <Box>
+                <Typography variant="caption">
+                  {profileUser.name}
+                </Typography>
+              </Box>
               <Box>{renderRole(infoUser.role)}</Box>
             </Box>
           </Box>

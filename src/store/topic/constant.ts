@@ -19,4 +19,4 @@ export type ActionTypes =
   | { type: typeof DELETE_TOPIC; payload: string | undefined }
   | { type: typeof SEARCH_TOPIC; payload: string }
   | { type: typeof SEARCH_TOPIC_STATUS; payload: string }
-  | { type: typeof REJECTED };
+  | { type: typeof REJECTED; payload?: string };

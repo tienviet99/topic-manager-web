@@ -7,6 +7,7 @@ export default interface ITopic {
   start_date: string;
   end_date: string;
   description: string;
+  requirements: string;
   link: string;
   major: string;
   status: boolean;

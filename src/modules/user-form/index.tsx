@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { InputLabel, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -10,10 +10,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IUser from 'types/users';
 import { majorList } from 'constant/major';
 import ButtonConfirm from 'components/button/button-confirm';
-import { useDispatch } from 'react-redux';
-import { addUser } from 'store/user/action';
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser, getUserById, updateUser } from 'store/user/action';
+import { useHistory, useParams } from 'react-router-dom';
 import SpinnerFeature from 'components/sipnner-feature';
+import { RootState } from 'store';
 import { userSchema } from './user-form.schema';
 import styles from './form.module.css';
 
@@ -28,7 +29,9 @@ export default function UserForm(props: UserFormProps) {
   const { mode, roles, handleNoti, noti } = props;
   const dispatch = useDispatch();
   const history = useHistory();
-  const [majorValues, setMajorValues] = useState<string>('');
+  const { _id } = useParams<{ _id: string }>();
+  const { userRow } = useSelector((state: RootState) => state.user);
+  const userData: IUser = Object(userRow);
   const [errMajor, setErrMajor] = useState<boolean>(false);
   const [errDate, setErrDate] = useState<boolean>(false);
   const renderRole = (param: number): string => {
@@ -43,6 +46,13 @@ export default function UserForm(props: UserFormProps) {
         return 'Student ID *';
     }
   };
+
+  useEffect(() => {
+    if (_id) {
+      dispatch(getUserById(_id));
+    }
+  }, [_id]);
+
   const validate = (start: string, end: any): boolean => {
     const num_start: number = Date.parse(`${start}`);
     const num_end: number = Date.parse(`${end}`);
@@ -51,14 +61,13 @@ export default function UserForm(props: UserFormProps) {
   const initialValues = useMemo(() => {
     if (mode === 'edit') {
       return {
-        userId: '',
-        name: '',
-        image: '',
-        date: '',
-        phone: '',
-        major: '',
-        role: 0,
-        password: 'admin123',
+        userId: userData.userId,
+        name: userData.name,
+        image: userData.image,
+        date: userData.date,
+        phone: userData.phone,
+        major: userData.major,
+        role: userData.role,
       };
     }
     return {
@@ -71,32 +80,30 @@ export default function UserForm(props: UserFormProps) {
       role: 0,
       password: 'admin123',
     };
-  }, [mode]);
-
-  const handleChangeMajor = (event: SelectChangeEvent): void => {
-    setMajorValues(event.target.value);
-    setErrMajor(false);
-  };
+  }, [mode, userData]);
 
   const handleSubmit = (values: any): void => {
     const submitData: IUser = {
       ...values,
-      major: majorValues,
       role: roles,
     };
     const now = new Date();
     const valid = validate(submitData.date, now);
-    if (!majorValues) {
-      setErrMajor(true);
-    } else if (valid) {
+    if (valid) {
       if (mode === 'create') {
         dispatch(addUser(submitData));
-        console.log('submitData: ', submitData);
+      }
+      if (mode === 'edit') {
+        dispatch(updateUser(_id, submitData));
       }
       handleNoti('success');
-      // setTimeout(() => {
-      //   history.push('/teacher');
-      // }, 2000);
+      setTimeout(() => {
+        if (roles === 0) {
+          history.push('/student');
+        } else {
+          history.push('/teacher');
+        }
+      }, 2000);
       setErrDate(false);
     } else setErrDate(true);
   };
@@ -135,8 +142,8 @@ export default function UserForm(props: UserFormProps) {
                 <Select
                   id="major"
                   name="major"
-                  value={majorValues}
-                  onChange={handleChangeMajor}
+                  value={formik.values.major}
+                  onChange={formik.handleChange}
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -148,9 +155,9 @@ export default function UserForm(props: UserFormProps) {
                   ))}
                 </Select>
               </FormControl>
-              {errMajor ? (
+              {formik.touched.major && formik.errors.major ? (
                 <span className={styles.error}>
-                  Please choose major
+                  {formik.errors.major}
                 </span>
               ) : null}
             </Box>
@@ -181,6 +188,9 @@ export default function UserForm(props: UserFormProps) {
               multiline
               rows={1}
               variant="standard"
+              InputLabelProps={{
+                shrink: formik.values.image !== '',
+              }}
               onChange={formik.handleChange}
               value={formik.values.image}
             />

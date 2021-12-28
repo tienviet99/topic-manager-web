@@ -55,7 +55,7 @@ export default function TopicList(props: TopicListProps) {
         </TableCell>
         <TableCell className="w-1/12">{item.major}</TableCell>
         <TableCell className="w-2/12">
-          {/* {item.teacherId.name} */}
+          {item.teacherId?.name}
         </TableCell>
         <TableCell className="w-1/12" align="center">
           {item.status ? (
@@ -65,21 +65,28 @@ export default function TopicList(props: TopicListProps) {
           )}
         </TableCell>
         <TableCell className="w-2/12" align="center">
-          {infoUser.role === 0 ? (
-            <Link to={PATH_TOPIC_DETAIL} className="mx-4 w-6">
-              <VisibilityIcon className="hover:text-gray-500 cursor-pointer" />
-            </Link>
+          {infoUser.role !== 2 ? (
+            <VisibilityIcon
+              className="mx-4 w-6 hover:text-gray-500 cursor-pointer"
+              onClick={() =>
+                history.push(`/topic/list/detail/${item._id}`)
+              }
+            />
           ) : null}
-          <EditIcon
-            className="mx-4 w-6 hover:text-gray-500 cursor-pointer"
-            onClick={() =>
-              history.push(`/topic/list/edit/${item._id}`)
-            }
-          />
-          <DeleteIcon
-            className="mx-4 w-6 text-red-500 hover:text-red-400 cursor-pointer"
-            onClick={() => hanldeOpenModal(item._id)}
-          />
+          {infoUser.role === 2 ? (
+            <>
+              <EditIcon
+                className="mx-4 w-6 hover:text-gray-500 cursor-pointer"
+                onClick={() =>
+                  history.push(`/topic/list/edit/${item._id}`)
+                }
+              />
+              <DeleteIcon
+                className="mx-4 w-6 text-red-500 hover:text-red-400 cursor-pointer"
+                onClick={() => hanldeOpenModal(item._id)}
+              />
+            </>
+          ) : null}
         </TableCell>
       </TableRow>
     );

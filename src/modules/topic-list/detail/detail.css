@@ -1,0 +1,12 @@
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: none !important;
+}
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:after{
+  border-bottom: none !important;
+}
+.css-5xn5lu-MuiInputBase-root-MuiInput-root:hover{
+  border-bottom: none !important;
+}
+.css-66dh3a-MuiInputBase-input-MuiInput-input.Mui-disabled{
+  -webkit-text-fill-color: #000 !important;
+}

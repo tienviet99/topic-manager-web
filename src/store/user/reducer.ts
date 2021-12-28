@@ -21,6 +21,7 @@ interface InitialState {
   user: IUser[];
   infoUser: ILogin[];
   profile: IUser;
+  userRow: IUser;
 }
 const initialState: InitialState = {
   loading: false,
@@ -31,6 +32,17 @@ const initialState: InitialState = {
     userId: '',
     name: '',
     date: '',
+    image: '',
+    role: 0,
+    phone: '',
+    major: '',
+    completeTopic: [],
+  },
+  userRow: {
+    userId: '',
+    name: '',
+    date: '',
+    image: '',
     role: 0,
     phone: '',
     major: '',
@@ -45,11 +57,11 @@ const UserReducer = (state = initialState, action: ActionTypes) => {
     case GET_USER:
       return { ...state, user: action.payload, loading: false };
     case GET_USER_BY_ID:
-      return { ...state, user: action.payload, loading: false };
+      return { ...state, userRow: action.payload, loading: false };
     case GET_PROFILE:
       return { ...state, profile: action.payload, loading: false };
     case GET_USER_BY_USER_ID:
-      return { ...state, user: action.payload, loading: false };
+      return { ...state, userRow: action.payload, loading: false };
     case SEARCH_USER:
       return { ...state, user: action.payload, loading: false };
     case ADD_USER:

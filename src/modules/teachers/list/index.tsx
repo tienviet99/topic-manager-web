@@ -19,7 +19,6 @@ interface StudentListProps {
 
 export default function TeacherList(props: StudentListProps) {
   const { teacherList, handleNoti } = props;
-  console.log('teacherList: ', teacherList);
   const dispatch = useDispatch();
   const history = useHistory();
   const [isOpen, setIsOpen] = useState<boolean>(false);

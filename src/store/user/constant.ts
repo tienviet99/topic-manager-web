@@ -16,9 +16,9 @@ export const GET_PROFILE = 'GET_PROFILE';
 export type ActionTypes =
   | { type: typeof PENDING }
   | { type: typeof GET_USER; payload: IUser[] }
-  | { type: typeof GET_USER_BY_ID; payload: string }
+  | { type: typeof GET_USER_BY_ID; payload: IUser }
   | { type: typeof GET_PROFILE; payload: IUser }
-  | { type: typeof GET_USER_BY_USER_ID; payload: string }
+  | { type: typeof GET_USER_BY_USER_ID; payload: IUser }
   | { type: typeof DELETE_USER; payload: string | undefined }
   | { type: typeof ADD_USER; payload: IUser }
   | { type: typeof UPDATE_USER; payload: IUser }

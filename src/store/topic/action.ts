@@ -43,7 +43,10 @@ export const addTopic =
       const res = await TopicApi.add(item);
       dispatch({ type: ADD_TOPIC, payload: res.data });
     } catch (error) {
-      dispatch({ type: REJECTED });
+      dispatch({
+        type: REJECTED,
+        payload: Object(error)?.response.data,
+      });
     }
   };
 

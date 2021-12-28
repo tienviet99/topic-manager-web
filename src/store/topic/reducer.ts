@@ -15,18 +15,21 @@ import {
 interface InitialState {
   loading: boolean;
   topic: ITopic[];
-  topicRows: ITopic;
+  topicRow: ITopic;
+  err: string;
 }
 
 const initialState: InitialState = {
   loading: false,
   topic: [],
-  topicRows: {
+  topicRow: {
     topicId: '',
     name: '',
     teacherId: {
+      _id: '',
       userId: '',
       name: '',
+      image: '',
       date: '',
       phone: '',
       major: '',
@@ -35,10 +38,12 @@ const initialState: InitialState = {
     start_date: '',
     end_date: '',
     description: '',
+    requirements: '',
     link: '',
     major: '',
     status: true,
   },
+  err: '',
 };
 
 const TopicReducer = (state = initialState, action: ActionTypes) => {
@@ -54,7 +59,7 @@ const TopicReducer = (state = initialState, action: ActionTypes) => {
     case GET_TOPIC_BY_ID:
       return {
         ...state,
-        topicRows: action.payload,
+        topicRow: action.payload,
         loading: false,
       };
     case SEARCH_TOPIC:
@@ -74,6 +79,7 @@ const TopicReducer = (state = initialState, action: ActionTypes) => {
         ...state,
         topic: [...state.topic, action.payload],
         loading: false,
+        err: '',
       };
     case UPDATE_TOPIC: {
       const newTopic = state.topic.map((topic: ITopic) => {
@@ -99,7 +105,7 @@ const TopicReducer = (state = initialState, action: ActionTypes) => {
       };
     }
     case REJECTED:
-      return { ...state, loading: true, status: 'error' };
+      return { ...state, loading: false, err: action.payload };
     default:
       return state;
   }

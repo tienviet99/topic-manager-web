@@ -5,6 +5,7 @@ export default interface IUser {
   phone: string;
   major: string;
   role: number;
+  image: string;
   completeTopic?: string[];
   _id?: string;
   createAt?: string;

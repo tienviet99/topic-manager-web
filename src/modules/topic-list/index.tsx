@@ -20,12 +20,18 @@ export default function TopicListContainer(
   const { handleNoti } = props;
   const dispatch = useDispatch();
   const { topic } = useSelector((state: RootState) => state.topic);
+  console.log('topic: ', topic);
   const hanldeSubmit = (e: string): void => {
     const params = {
       keyword: `${e}`,
     };
+    console.log('params: ', params);
     dispatch(searchTopic(params));
   };
+
+  const infoUser: any = JSON.parse(
+    `${localStorage.getItem('infoUser')}`,
+  );
 
   useEffect(() => {
     dispatch(getTopic());
@@ -36,9 +42,11 @@ export default function TopicListContainer(
       <Grid item xs={12}>
         <Box className="w-full flex mt-6 justify-between items-center bg-white px-5 py-3 rounded-lg shadow">
           <Search onSubmitForm={hanldeSubmit} />
-          <Link to={PATH_TOPIC_CREATE}>
-            <ButtonCustom label="Add Topic" />
-          </Link>
+          {infoUser.role === 2 ? (
+            <Link to={PATH_TOPIC_CREATE}>
+              <ButtonCustom label="Add Topic" />
+            </Link>
+          ) : null}
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">

@@ -15,7 +15,7 @@ const TopicApi = {
     return axiosClient.post(url, topic);
   },
   update(_id: string, topic: ITopic) {
-    const url: string = `/topic/edit/${_id}`;
+    const url: string = `/topic/update/${_id}`;
     return axiosClient.put(url, topic);
   },
   remove(_id: string | undefined) {

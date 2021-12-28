@@ -13,6 +13,9 @@ export const topicSchema = Yup.object().shape({
   description: Yup.string()
     .required('Please enter description')
     .max(1000, 'Description must be less than 1000 words'),
+  requirements: Yup.string()
+    .required('Please enter requirements')
+    .max(1000, 'requirements must be less than 1000 words'),
   teacherId: Yup.string().required('Please enter teacher'),
   link: Yup.string().required('Please enter link').url('Link is URL'),
 });

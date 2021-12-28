@@ -28,7 +28,7 @@ export default function StudentContainer(
     dispatch(searchUser(params));
   };
   const { user } = useSelector((state: RootState) => state.user);
-  const studentData: IUser[] = user.filter(
+  const studentData: IUser[] = Object(user).filter(
     (item: IUser) => item.role === 0,
   );
 

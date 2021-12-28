@@ -15,7 +15,11 @@ import { majorList } from 'constant/major';
 import ButtonConfirm from 'components/button/button-confirm';
 import Switch from 'components/switch';
 import { getUser } from 'store/user/action';
-import { addTopic, getTopicById } from 'store/topic/action';
+import {
+  addTopic,
+  getTopicById,
+  updateTopic,
+} from 'store/topic/action';
 import IUser from 'types/users';
 import SpinnerFeature from 'components/sipnner-feature';
 import { topicSchema } from './topic-form.schema';
@@ -34,10 +38,8 @@ export default function TopicForm(props: TopicFormProps) {
   const { _id } = useParams<{ _id: string }>();
   const [statusSwitch, setStatusSwitch] = useState<boolean>(true);
   const [err_Date, setErr_Date] = useState<boolean>(false);
-  const { topicRows } = useSelector(
-    (state: RootState) => state.topic,
-  );
-  const topicData: ITopic = Object(topicRows);
+  const { topicRow } = useSelector((state: RootState) => state.topic);
+  const topicData: ITopic = topicRow;
 
   useEffect(() => {
     dispatch(getUser());
@@ -45,16 +47,17 @@ export default function TopicForm(props: TopicFormProps) {
       dispatch(getTopicById(_id));
     }
   }, [_id]);
+
   const initialValues = useMemo(() => {
     if (mode === 'edit') {
-      console.log('topicData: ', topicData);
       return {
         topicId: topicData.topicId,
-        teacherId: 'topicData.teacherId._id',
+        teacherId: topicData.teacherId._id,
         name: topicData.name,
         start_date: topicData.start_date,
         end_date: topicData.end_date,
         description: topicData.description,
+        requirements: topicData.requirements,
         link: topicData.link,
         major: topicData.major,
         status: topicData.status,
@@ -67,13 +70,14 @@ export default function TopicForm(props: TopicFormProps) {
       start_date: '',
       end_date: '',
       description: '',
+      requirements: '',
       link: '',
       major: '',
       status: true,
     };
   }, [mode, topicData]);
   const { user } = useSelector((state: RootState) => state.user);
-  const teacherData: IUser[] = user.filter(
+  const teacherData: IUser[] = Object(user).filter(
     (item: IUser) => item.role === 1,
   );
 
@@ -86,7 +90,7 @@ export default function TopicForm(props: TopicFormProps) {
     return num_start < num_end;
   };
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = async (values: any) => {
     const submitData: ITopic = {
       ...values,
       status: statusSwitch,
@@ -98,11 +102,14 @@ export default function TopicForm(props: TopicFormProps) {
     if (valid) {
       if (mode === 'create') {
         dispatch(addTopic(submitData));
+      } else {
+        dispatch(updateTopic(_id, submitData));
       }
       handleNoti('success');
       setTimeout(() => {
         history.push('/topic/list');
       }, 2000);
+
       setErr_Date(false);
     } else setErr_Date(true);
   };
@@ -267,6 +274,29 @@ export default function TopicForm(props: TopicFormProps) {
           <Box className="w-full">
             <TextField
               fullWidth
+              id="requirements"
+              name="requirements"
+              label="Requirements *"
+              multiline
+              variant="standard"
+              InputLabelProps={{
+                shrink: formik.values.requirements !== '',
+              }}
+              onChange={formik.handleChange}
+              value={formik.values.requirements}
+            />
+          </Box>
+          {formik.touched.requirements &&
+          formik.errors.requirements ? (
+            <span className={styles.error}>
+              {formik.errors.requirements}
+            </span>
+          ) : null}
+        </Box>
+        <Box className="my-9 mx-3 text-left">
+          <Box className="w-full">
+            <TextField
+              fullWidth
               id="link"
               name="link"
               label="Link"
@@ -320,7 +350,7 @@ export default function TopicForm(props: TopicFormProps) {
           </Box>
         </Box>
         <Box className="flex justify-end mt-24 mb-3 mr-2">
-          {noti === 'info' ? (
+          {noti !== 'success' ? (
             <ButtonConfirm label="Submit" type="submit" />
           ) : (
             <Box className="absolute top-20 right-14">
