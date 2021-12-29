@@ -1,21 +1,33 @@
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import Search from 'components/search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { getTopic, searchTopic } from 'store/topic/action';
+import ITopic from 'types/topic';
 import TopicUserList from './list';
-import { topicUserData } from './topicuser.data';
 
-interface TopicUserContainerProps {
-  mode: 'student' | 'teacher';
-}
+export default function TopicUserContainer() {
+  const dispatch = useDispatch();
+  const infoUser: any = JSON.parse(
+    `${localStorage.getItem('infoUser')}`,
+  );
+  const { topic } = useSelector((state: RootState) => state.topic);
+  const topicTeacher = Object(topic).filter(
+    (item: ITopic) => item.teacherId._id === infoUser._id,
+  );
 
-export default function TopicUserContainer(
-  props: TopicUserContainerProps,
-) {
-  const { mode } = props;
-  const handleSubmit = (e: any): void => {
-    console.log('keyWord:', e);
+  const handleSubmit = (e: string): void => {
+    const params = {
+      keyword: `${e}`,
+    };
+    dispatch(searchTopic(params));
   };
+
+  useEffect(() => {
+    dispatch(getTopic());
+  }, []);
 
   return (
     <Box className="mx-10">
@@ -25,12 +37,11 @@ export default function TopicUserContainer(
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TopicUserList topicUserListData={topicUserData} />
+        <TopicUserList
+          topicUser={topicTeacher}
+          role={infoUser.role}
+        />
       </Grid>
     </Box>
   );
 }
-
-TopicUserContainer.defaulProps = {
-  mode: 'student',
-};

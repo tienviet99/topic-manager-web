@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 
 import styles from './topic-user-list.module.css';
 
-export default function TopicUserTableHead() {
+export default function TopicStudentTableHead() {
   return (
     <>
       <TableCell>
