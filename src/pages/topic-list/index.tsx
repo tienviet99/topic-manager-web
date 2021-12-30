@@ -16,7 +16,7 @@ export default function TopicList() {
       <Box className="text-4xl flex">List Topic</Box>
       <TopicListContainer handleNoti={setNoti} />
       {loading ? (
-        <Box className="absolute top-20 right-14">
+        <Box className="absolute top-0">
           <SpinnerFeature />
         </Box>
       ) : null}

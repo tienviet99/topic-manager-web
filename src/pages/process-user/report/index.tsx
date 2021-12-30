@@ -2,11 +2,11 @@ import { Divider, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import ButtonBack from 'components/button/button-back';
 import ButtonConfirm from 'components/button/button-confirm';
-import ReportForm from 'modules/topic-user/form';
-import HistoryTask from 'modules/topic-user/history';
-import ReportDetail from 'modules/topic-user/report-detail';
+import ReportForm from 'modules/process-user/form';
+import HistoryTask from 'modules/process-user/history';
+import ReportDetail from 'modules/process-user/report-detail';
 import { useState } from 'react';
-import { PATH_TOPIC_USER_CONTAINER } from 'routes/routes.path';
+import { PATH_PROCESS_CONTAINER } from 'routes/routes.path';
 
 export default function Report() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -19,7 +19,7 @@ export default function Report() {
   return (
     <Box>
       <Box className="mb-5 w-12">
-        <ButtonBack to={PATH_TOPIC_USER_CONTAINER} />
+        <ButtonBack to={PATH_PROCESS_CONTAINER} />
       </Box>
       <Box className="mx-10">
         <Grid item xs={12}>

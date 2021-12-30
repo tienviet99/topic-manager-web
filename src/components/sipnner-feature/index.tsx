@@ -9,8 +9,12 @@ interface SpinnerProps extends ComponentPropsWithoutRef<'div'> { }
 export default function SpinnerFeature({ ...props }: SpinnerProps) {
   return (
     <Box
-      className="bg-white w-screen h-screen bg-opacity-50 rounded-md"
-      style={{ width: '1530px', height: '800px' }}
+      className="w-screen h-screen bg-opacity-100 rounded-md"
+      style={{
+        width: '1560px',
+        height: '930px',
+        backgroundColor: '#EFF6FF',
+      }}
     >
       <div className={styles.loader} {...props} />
     </Box>

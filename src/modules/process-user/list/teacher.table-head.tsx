@@ -1,9 +1,9 @@
 import { TableCell } from '@mui/material';
 import { Box } from '@mui/system';
 
-import styles from './topic-user-list.module.css';
+import styles from './user-list.module.css';
 
-export default function TopicStudentTableHead() {
+export default function TopicTeacherTableHead() {
   return (
     <>
       <TableCell>
@@ -13,7 +13,7 @@ export default function TopicStudentTableHead() {
         <Box className="text-xl">Name</Box>
       </TableCell>
       <TableCell>
-        <Box className="text-xl">Teacher</Box>
+        <Box className="text-xl">Student</Box>
       </TableCell>
       <TableCell align="center">
         <Box className="text-xl">Status</Box>

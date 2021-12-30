@@ -6,7 +6,7 @@ const TopicApi = {
     const url: string = `/topic/list`;
     return axiosClient.get(url);
   },
-  getTopicById(_id: string) {
+  getTopicById(_id: string | undefined) {
     const url: string = `/topic/${_id}`;
     return axiosClient.get(url);
   },

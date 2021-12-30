@@ -30,7 +30,7 @@ export default function TopicList(props: TopicListProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
   const [topicId, setTopicId] = useState<string | undefined>('');
-  const hanldeOpenModal = (_id: string | undefined): void => {
+  const handleOpenModal = (_id: string | undefined): void => {
     setIsOpen(!isOpen);
     setTopicId(_id);
   };
@@ -83,7 +83,7 @@ export default function TopicList(props: TopicListProps) {
               />
               <DeleteIcon
                 className="mx-4 w-6 text-red-500 hover:text-red-400 cursor-pointer"
-                onClick={() => hanldeOpenModal(item._id)}
+                onClick={() => handleOpenModal(item._id)}
               />
             </>
           ) : null}

@@ -29,7 +29,7 @@ const initialState: InitialState = {
       _id: '',
       userId: '',
       name: '',
-      image: '',
+      email: '',
       date: '',
       phone: '',
       major: '',

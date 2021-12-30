@@ -5,7 +5,7 @@ import {
   Student,
   Teacher,
   TopicList,
-  TopicUser,
+  Process,
   User,
 } from 'pages';
 import TopicCreate from 'pages/topic-list/create';
@@ -15,23 +15,24 @@ import StudentEdit from 'pages/students/edit';
 import TeacherCreate from 'pages/teachers/create';
 import TeacherEdit from 'pages/teachers/edit';
 import TopicDetail from 'pages/topic-list/detail';
-import TopicUserDetailTask from 'pages/topic-user/detail-task';
-import Report from 'pages/topic-user/report';
+import ProcessContainer from 'pages/process-user/detail-task';
+
+import Report from 'pages/process-user/report';
 import {
   PATH_STUDENT,
   PATH_TEACHER,
   PATH_TOPIC_LIST,
   PATH_TOPIC_CREATE,
   PATH_TOPIC_EDIT,
-  PATH_TOPIC_USER,
   PATH_USER,
   PATH_STUDENT_CREATE,
   PATH_STUDENT_EDIT,
   PATH_TEACHER_CREATE,
   PATH_TEACHER_EDIT,
   PATH_TOPIC_DETAIL,
-  PATH_TOPIC_USER_CONTAINER,
+  PATH_PROCESS_CONTAINER,
   PATH_REPORT,
+  PATH_PROCESS,
 } from './routes.path';
 
 interface RouteModel {
@@ -98,13 +99,13 @@ export const appRoutes: RouteModel[] = [
   },
   {
     exact: true,
-    path: PATH_TOPIC_USER,
-    component: TopicUser,
+    path: PATH_PROCESS,
+    component: Process,
   },
   {
     exact: true,
-    path: PATH_TOPIC_USER_CONTAINER,
-    component: TopicUserDetailTask,
+    path: PATH_PROCESS_CONTAINER,
+    component: ProcessContainer,
   },
   {
     exact: true,

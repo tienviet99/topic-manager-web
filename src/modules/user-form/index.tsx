@@ -63,7 +63,7 @@ export default function UserForm(props: UserFormProps) {
       return {
         userId: userData.userId,
         name: userData.name,
-        image: userData.image,
+        email: userData.email,
         date: userData.date,
         phone: userData.phone,
         major: userData.major,
@@ -73,7 +73,7 @@ export default function UserForm(props: UserFormProps) {
     return {
       userId: '',
       name: '',
-      image: '',
+      email: '',
       date: '',
       phone: '',
       major: '',
@@ -183,16 +183,16 @@ export default function UserForm(props: UserFormProps) {
           <Box className="w-full">
             <TextField
               fullWidth
-              id="image"
-              label="Image *"
+              id="email"
+              label="Email *"
               multiline
               rows={1}
               variant="standard"
               InputLabelProps={{
-                shrink: formik.values.image !== '',
+                shrink: formik.values.email !== '',
               }}
               onChange={formik.handleChange}
-              value={formik.values.image}
+              value={formik.values.email}
             />
           </Box>
         </Box>

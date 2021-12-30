@@ -1,10 +1,12 @@
 import { PENDING } from 'store/task/constant';
 import IProcess from 'types/process';
+import { string } from 'yup/lib/locale';
 import {
   ActionTypes,
   ADD_PROCESS,
   DELETE_PROCESS,
   GET_PROCESS,
+  GET_PROCESS_BY_ID,
   GET_PROCESS_BY_STUDENT_ID,
   GET_PROCESS_BY_TEACHER_ID,
   UPDATE_PROCESS,
@@ -13,11 +15,47 @@ import {
 interface InitialState {
   loading: boolean;
   process: IProcess[];
+  processRow: IProcess;
 }
 
 const initialState: InitialState = {
   loading: false,
   process: [],
+  processRow: {
+    studentId: '',
+    teacherId: {
+      userId: '',
+      name: '',
+      date: '',
+      phone: '',
+      major: '',
+      role: 0,
+      email: '',
+    },
+    topicId: {
+      topicId: '',
+      name: '',
+      teacherId: {
+        userId: '',
+        name: '',
+        date: '',
+        phone: '',
+        major: '',
+        role: 0,
+        email: '',
+      },
+      start_date: '',
+      end_date: '',
+      description: '',
+      requirements: '',
+      link: '',
+      major: '',
+      status: true,
+    },
+    status: true,
+    point: 0,
+    percent: 0,
+  },
 };
 
 const ProcessReducer = (
@@ -33,6 +71,8 @@ const ProcessReducer = (
       return { ...state, process: action.payload, loading: false };
     case GET_PROCESS_BY_TEACHER_ID:
       return { ...state, process: action.payload, loading: false };
+    case GET_PROCESS_BY_ID:
+      return { ...state, processRow: action.payload, loading: false };
     case ADD_PROCESS: {
       return {
         ...state,

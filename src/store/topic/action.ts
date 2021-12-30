@@ -26,7 +26,8 @@ export const getTopic =
   };
 
 export const getTopicById =
-  (_id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  (_id: string | undefined) =>
+  async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
       const { data: topic } = await TopicApi.getTopicById(_id);

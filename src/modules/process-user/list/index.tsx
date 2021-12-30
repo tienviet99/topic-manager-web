@@ -1,45 +1,59 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import { TableCell, TableRow, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { PATH_TOPIC_USER_CONTAINER } from 'routes/routes.path';
+import { PATH_PROCESS_CONTAINER } from 'routes/routes.path';
 import ButtonConfirm from 'components/button/button-confirm';
 import Table from 'components/table';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById } from 'store/user/action';
+import { getUser, getUserById } from 'store/user/action';
 import { RootState } from 'store';
 import ITopic from 'types/topic';
 import IProcess from 'types/process';
-import styles from './topic-user-list.module.css';
-import TopicStudentTableHead from './topic-student.table-head';
-import TopicTeacherTableHead from './topic-teacher.table-head';
+import IUser from 'types/users';
+import styles from './user-list.module.css';
+import TopicStudentTableHead from './student.table-head';
+import TopicTeacherTableHead from './teacher.table-head';
 
 interface TopicUserListProps {
-  topicUser: any;
+  processUser: IProcess[];
   role: number;
 }
 
 export default function TopicUserList(props: TopicUserListProps) {
-  const { topicUser, role } = props;
+  const history = useHistory();
+  const { processUser, role } = props;
   const dispatch = useDispatch();
   const [page, setPage] = useState<number>(0);
+  const { user } = useSelector((state: RootState) => state.user);
+  const userData: IUser[] = Object(user);
 
-  const handleStudentName = (_id: string) => {
-    dispatch(getUserById(_id));
-    const { userRow } = useSelector((state: RootState) => state.user);
-    return userRow.name;
+  const handleStudentName = (_id: string): string => {
+    if (_id) {
+      const userRow: IUser | undefined = userData.find(
+        (item: IUser) => item._id === _id,
+      );
+      if (userRow) return userRow.name;
+    }
+    return '';
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   function renderRows(item: IProcess) {
     return (
       <TableRow key={item._id} className="w-full">
-        <TableCell className="w-1/12">{item.topicId}</TableCell>
+        <TableCell className="w-1/12">
+          {item.topicId.topicId}
+        </TableCell>
         <TableCell>
           <Box className={styles.row_name}>{item.topicId.name}</Box>
         </TableCell>
         <TableCell className="w-3/12">
-          {item.studentId ? handleStudentName(item.studentId) : null}
+          {handleStudentName(item.studentId)}
         </TableCell>
         <TableCell className="w-1/12" align="center">
           {item.status ? (
@@ -50,9 +64,13 @@ export default function TopicUserList(props: TopicUserListProps) {
         </TableCell>
         <TableCell className="w-2/12" align="center">
           <Box className="w-full flex justify-center">
-            <Link to={PATH_TOPIC_USER_CONTAINER}>
-              <ButtonConfirm label="View" type="button" />
-            </Link>
+            <ButtonConfirm
+              label="View"
+              type="button"
+              onClickProps={() =>
+                history.push(`/process/container/${item._id}`)
+              }
+            />
           </Box>
         </TableCell>
       </TableRow>
@@ -63,7 +81,7 @@ export default function TopicUserList(props: TopicUserListProps) {
     <Box>
       <Table
         loading={false}
-        data={topicUser}
+        data={processUser}
         page={page}
         setPage={setPage}
         head={

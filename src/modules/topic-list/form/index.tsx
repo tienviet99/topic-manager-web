@@ -52,7 +52,7 @@ export default function TopicForm(props: TopicFormProps) {
     if (mode === 'edit') {
       return {
         topicId: topicData.topicId,
-        teacherId: topicData.teacherId._id,
+        teacherId: topicData.teacherId ? topicData.teacherId._id : '',
         name: topicData.name,
         start_date: topicData.start_date,
         end_date: topicData.end_date,
@@ -353,7 +353,7 @@ export default function TopicForm(props: TopicFormProps) {
           {noti !== 'success' ? (
             <ButtonConfirm label="Submit" type="submit" />
           ) : (
-            <Box className="absolute top-20 right-14">
+            <Box className="absolute top-0 right-2">
               <SpinnerFeature />
             </Box>
           )}

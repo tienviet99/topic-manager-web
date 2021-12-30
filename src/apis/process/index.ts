@@ -10,6 +10,10 @@ const ProcessApi = {
     const url: string = `/process/student/${studentId}`;
     return axiosClient.get(url);
   },
+  getProcessById(processId: string) {
+    const url: string = `/process/${processId}`;
+    return axiosClient.get(url);
+  },
   getProcessTeacher(teacherId: string) {
     const url: string = `/process/teacher/${teacherId}`;
     return axiosClient.get(url);

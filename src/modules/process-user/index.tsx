@@ -4,6 +4,7 @@ import Search from 'components/search';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
+import { getProcessByTeacherId } from 'store/process/action';
 import { getTopic, searchTopic } from 'store/topic/action';
 import ITopic from 'types/topic';
 import TopicUserList from './list';
@@ -13,10 +14,11 @@ export default function TopicUserContainer() {
   const infoUser: any = JSON.parse(
     `${localStorage.getItem('infoUser')}`,
   );
-  const { topic } = useSelector((state: RootState) => state.topic);
-  const topicTeacher = Object(topic).filter(
-    (item: ITopic) => item.teacherId._id === infoUser._id,
+
+  const { process } = useSelector(
+    (state: RootState) => state.process,
   );
+  console.log('process: ', process);
 
   const handleSubmit = (e: string): void => {
     const params = {
@@ -26,7 +28,7 @@ export default function TopicUserContainer() {
   };
 
   useEffect(() => {
-    dispatch(getTopic());
+    dispatch(getProcessByTeacherId(infoUser._id));
   }, []);
 
   return (
@@ -37,10 +39,7 @@ export default function TopicUserContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TopicUserList
-          topicUser={topicTeacher}
-          role={infoUser.role}
-        />
+        <TopicUserList processUser={process} role={infoUser.role} />
       </Grid>
     </Box>
   );

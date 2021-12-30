@@ -7,6 +7,7 @@ import {
   ADD_PROCESS,
   DELETE_PROCESS,
   GET_PROCESS,
+  GET_PROCESS_BY_ID,
   GET_PROCESS_BY_STUDENT_ID,
   GET_PROCESS_BY_TEACHER_ID,
   REJECTED,
@@ -45,6 +46,19 @@ export const getProcessByStudentId =
         studentId,
       );
       dispatch({ type: GET_PROCESS_BY_STUDENT_ID, payload: process });
+    } catch (error) {
+      dispatch({ type: REJECTED });
+    }
+  };
+
+export const getProcessById =
+  (processId: string) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PENDING });
+    try {
+      const { data: process } = await ProcessApi.getProcessById(
+        processId,
+      );
+      dispatch({ type: GET_PROCESS_BY_ID, payload: process });
     } catch (error) {
       dispatch({ type: REJECTED });
     }

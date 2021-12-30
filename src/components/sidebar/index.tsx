@@ -18,7 +18,7 @@ import {
   PATH_STUDENT,
   PATH_TEACHER,
   PATH_TOPIC_LIST,
-  PATH_TOPIC_USER,
+  PATH_PROCESS,
   PATH_USER,
 } from 'routes/routes.path';
 import { getProfile } from 'store/user/action';
@@ -99,7 +99,7 @@ export default function Sidebar() {
             </NavLink>
             <NavLink
               activeClassName={styles.active_link}
-              to={PATH_TOPIC_USER}
+              to={PATH_PROCESS}
               className="text-white flex py-4 cursor-pointer text-md text-left mx-2 rounded-2xl hover: transition-all mb-1 relative"
             >
               <div className={styles.button}> </div>
