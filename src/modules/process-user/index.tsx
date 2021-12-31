@@ -7,9 +7,9 @@ import { RootState } from 'store';
 import { getProcessByTeacherId } from 'store/process/action';
 import { getTopic, searchTopic } from 'store/topic/action';
 import ITopic from 'types/topic';
-import TopicUserList from './list';
+import ProcessList from './list';
 
-export default function TopicUserContainer() {
+export default function ProcessContainer() {
   const dispatch = useDispatch();
   const infoUser: any = JSON.parse(
     `${localStorage.getItem('infoUser')}`,
@@ -39,7 +39,7 @@ export default function TopicUserContainer() {
         </Box>
       </Grid>
       <Grid xs={12} className="mt-8">
-        <TopicUserList processUser={process} role={infoUser.role} />
+        <ProcessList processUser={process} role={infoUser.role} />
       </Grid>
     </Box>
   );

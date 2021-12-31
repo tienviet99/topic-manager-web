@@ -1,0 +1,11 @@
+.button_return_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0c2461;
+  width: 3rem;
+  height: 3rem;
+  color: white;
+  border-radius: 32px;
+  cursor: pointer;
+}

@@ -128,9 +128,7 @@ export const logout =
   () => async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('secret');
-      localStorage.removeItem('infoUser');
+      localStorage.clear();
       dispatch({ type: LOGOUT });
     } catch (error) {
       dispatch({ type: REJECTED });

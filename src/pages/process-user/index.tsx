@@ -1,6 +1,6 @@
 import { Box } from '@mui/system';
 import SpinnerFeature from 'components/sipnner-feature';
-import TopicUserContainer from 'modules/process-user';
+import ProcessContainer from 'modules/process-user';
 
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
@@ -12,7 +12,7 @@ export default function Process() {
   return (
     <Box className="relative">
       <Box className="text-4xl flex mb-3">My Topic</Box>
-      <TopicUserContainer />
+      <ProcessContainer />
       {loading ? (
         <Box className="absolute top-0">
           <SpinnerFeature />

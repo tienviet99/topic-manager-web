@@ -4,6 +4,7 @@ import {
   ADD_TASK,
   DELETE_TASK,
   GET_TASK,
+  GET_TASK_BY_PROCESS_ID,
   PENDING,
   UPDATE_TASK,
 } from './constant';
@@ -23,6 +24,8 @@ const TaskReducer = (state = initialState, action: ActionTypes) => {
     case PENDING:
       return { ...state, loading: true };
     case GET_TASK:
+      return { ...state, task: action.payload, loading: false };
+    case GET_TASK_BY_PROCESS_ID:
       return { ...state, task: action.payload, loading: false };
     case ADD_TASK:
       return {

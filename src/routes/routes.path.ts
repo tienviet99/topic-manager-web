@@ -13,3 +13,4 @@ export const PATH_REPORT = '/process/report';
 export const PATH_PROCESS_CONTAINER = '/process/container/:_id';
 export const PATH_USER = '/user';
 export const LOGIN = 'LOGIN';
+export const PATH_DASHBOARD = '/';

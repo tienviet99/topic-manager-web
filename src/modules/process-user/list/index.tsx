@@ -16,12 +16,12 @@ import styles from './user-list.module.css';
 import TopicStudentTableHead from './student.table-head';
 import TopicTeacherTableHead from './teacher.table-head';
 
-interface TopicUserListProps {
+interface ProcessListProps {
   processUser: IProcess[];
   role: number;
 }
 
-export default function TopicUserList(props: TopicUserListProps) {
+export default function ProcessList(props: ProcessListProps) {
   const history = useHistory();
   const { processUser, role } = props;
   const dispatch = useDispatch();
@@ -37,6 +37,11 @@ export default function TopicUserList(props: TopicUserListProps) {
       if (userRow) return userRow.name;
     }
     return '';
+  };
+
+  const handleUpdateProcessId = (_id: string | undefined): void => {
+    history.push(`/process/container/${_id}`);
+    localStorage.setItem('processId', `${_id}`);
   };
 
   useEffect(() => {
@@ -67,9 +72,7 @@ export default function TopicUserList(props: TopicUserListProps) {
             <ButtonConfirm
               label="View"
               type="button"
-              onClickProps={() =>
-                history.push(`/process/container/${item._id}`)
-              }
+              onClickProps={() => handleUpdateProcessId(item._id)}
             />
           </Box>
         </TableCell>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
@@ -10,14 +9,41 @@ import { Link } from 'react-router-dom';
 
 import ProgressTask from 'components/progress';
 import { PATH_REPORT } from 'routes/routes.path';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTaskByProcessId } from 'store/task/action';
+import { useEffect } from 'react';
+import { RootState } from 'store';
+import { getProcessById } from 'store/process/action';
+import ITopic from 'types/topic';
 import { dataTask } from './task.data';
 
-export default function Task() {
+interface TaskProps {
+  _id: string | undefined;
+}
+
+export default function Task(props: TaskProps) {
+  const { _id } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (_id) {
+      dispatch(getTaskByProcessId(_id));
+      dispatch(getProcessById(_id));
+    }
+  }, [_id]);
+
+  const { task } = useSelector((state: RootState) => state.task);
+  const { topicRow } = useSelector((state: RootState) => state.topic);
+  const topicData: ITopic = Object(topicRow);
+
   return (
     <Box className="mt-5 flex flex-col items-start w-full">
       <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          12/07/2020
+        <TimelineOppositeContent
+          color="text.secondary"
+          className="w-36"
+        >
+          {topicData.start_date}
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot />
@@ -29,7 +55,10 @@ export default function Task() {
       </TimelineItem>
       {dataTask.map((item) => (
         <TimelineItem key={item.id}>
-          <TimelineOppositeContent color="text.secondary">
+          <TimelineOppositeContent
+            color="text.secondary"
+            style={{ width: '122px' }}
+          >
             {item.start_day}
           </TimelineOppositeContent>
           <TimelineSeparator>
@@ -50,8 +79,11 @@ export default function Task() {
         </TimelineItem>
       ))}
       <TimelineItem>
-        <TimelineOppositeContent color="text.secondary">
-          12/07/2020
+        <TimelineOppositeContent
+          color="text.secondary"
+          className="w-36"
+        >
+          {topicData.end_date}
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot />

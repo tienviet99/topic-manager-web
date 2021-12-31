@@ -15,9 +15,8 @@ import StudentEdit from 'pages/students/edit';
 import TeacherCreate from 'pages/teachers/create';
 import TeacherEdit from 'pages/teachers/edit';
 import TopicDetail from 'pages/topic-list/detail';
-import ProcessContainer from 'pages/process-user/detail-task';
-
 import Report from 'pages/process-user/report';
+import ProcessMain from 'pages/process-user/detail-task';
 import {
   PATH_STUDENT,
   PATH_TEACHER,
@@ -105,7 +104,7 @@ export const appRoutes: RouteModel[] = [
   {
     exact: true,
     path: PATH_PROCESS_CONTAINER,
-    component: ProcessContainer,
+    component: ProcessMain,
   },
   {
     exact: true,
