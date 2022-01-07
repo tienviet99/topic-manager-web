@@ -17,11 +17,11 @@ import { getProcessById } from 'store/process/action';
 import ITopic from 'types/topic';
 import { dataTask } from './task.data';
 
-interface TaskProps {
+interface TaskListProps {
   _id: string | undefined;
 }
 
-export default function Task(props: TaskProps) {
+export default function TaskList(props: TaskListProps) {
   const { _id } = props;
   const dispatch = useDispatch();
 
@@ -53,24 +53,26 @@ export default function Task(props: TaskProps) {
           <Box>Start Day</Box>
         </TimelineContent>
       </TimelineItem>
-      {dataTask.map((item) => (
-        <TimelineItem key={item.id}>
+      {task.map((item) => (
+        <TimelineItem key={item._id}>
           <TimelineOppositeContent
             color="text.secondary"
             style={{ width: '122px' }}
           >
-            {item.start_day}
+            {item.start_date}
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <Box sx={{ marginLeft: `${item.left * 1290}px` }}>
+            {/* <Box sx={{ marginLeft: `${item.left * 1290}px` }}> */}
+            <Box>
               <Link to={PATH_REPORT}>
+                <Box className="bg-red-900 h-5 w-full" />
                 <ProgressTask
                   label={item.name}
-                  percent={item.percent}
+                  completePercent={item.completePercent}
                   totalPercent={item.totalPercent}
                 />
               </Link>

@@ -1,10 +1,9 @@
 export default interface ITask {
-  processId: string;
-  title: string;
-  start_day: string;
-  end_day: string;
-  description: string;
-  point: number;
+  processId: string | undefined;
+  name: string;
+  start_date: string;
+  end_date: string;
+  requirements: string;
   totalPercent: number;
   completePercent: number;
   _id?: string;

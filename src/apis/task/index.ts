@@ -18,7 +18,7 @@ const TaskApi = {
     const url: string = `/task/update/${_id}`;
     return axiosClient.put(url, task);
   },
-  remove(_id: string) {
+  remove(_id: string | undefined) {
     const url: string = `/task/delete/${_id}`;
     return axiosClient.delete(url);
   },

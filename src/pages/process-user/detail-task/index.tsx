@@ -3,10 +3,13 @@ import { Box } from '@mui/system';
 import ButtonCustom from 'components/button/buton-custom';
 
 import ButtonBack from 'components/button/button-back';
+import ButtonCancel from 'components/button/button-cancel';
 import ButtonConfirm from 'components/button/button-confirm';
 import SpinnerFeature from 'components/sipnner-feature';
 import ProcessDetail from 'modules/process-user/detail';
-import Task from 'modules/process-user/task';
+import TaskForm from 'modules/process-user/task/task-form';
+import TaskList from 'modules/process-user/task/task-list';
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -21,6 +24,10 @@ export default function ProcessMain() {
   const { processRow } = useSelector(
     (state: RootState) => state.process,
   );
+  const [isUpdate, setIsUpdate] = useState<boolean>(false);
+  const handleUpdateBtn = () => {
+    setIsUpdate(!isUpdate);
+  };
 
   const [delay, setDelay] = useState<boolean>(false);
 
@@ -58,15 +65,36 @@ export default function ProcessMain() {
               <Box className="ml-3">
                 <Box className="flex relative justify-end">
                   <Box className="absolute top-0 left-1/2">
-                    <Typography variant="h5">Task</Typography>
+                    {!isUpdate ? (
+                      <Typography variant="h5">Task List</Typography>
+                    ) : (
+                      <Typography variant="h5">Task Form</Typography>
+                    )}
                   </Box>
-                  <ButtonConfirm label="Update" type="button" />
+                  {!isUpdate ? (
+                    <ButtonConfirm
+                      label="Update"
+                      type="button"
+                      onClickProps={() => handleUpdateBtn()}
+                    />
+                  ) : (
+                    <ButtonCancel
+                      label="Cancel"
+                      onClickProps={() => handleUpdateBtn()}
+                    />
+                  )}
                 </Box>
                 <Divider className="pt-1" />
               </Box>
-              <Box className="flex">
-                <Task _id={processRow._id} />
-              </Box>
+              {!isUpdate ? (
+                <TaskList _id={processRow._id} />
+              ) : (
+                <TaskForm
+                  _id={processRow._id}
+                  handleUpdate={setIsUpdate}
+                  onUpdate={isUpdate}
+                />
+              )}
             </Box>
           </Grid>
         </Box>

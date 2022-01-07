@@ -13,6 +13,6 @@ export type ActionTypes =
   | { type: typeof GET_TASK; payload: ITask[] }
   | { type: typeof ADD_TASK; payload: ITask }
   | { type: typeof UPDATE_TASK; payload: ITask }
-  | { type: typeof DELETE_TASK; payload: string }
+  | { type: typeof DELETE_TASK; payload: string | undefined }
   | { type: typeof GET_TASK_BY_PROCESS_ID; payload: ITask[] }
   | { type: typeof REJECTED };

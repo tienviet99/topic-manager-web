@@ -47,7 +47,8 @@ export const updateTask =
   };
 
 export const deleteTask =
-  (_id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+  (_id: string | undefined) =>
+  async (dispatch: Dispatch<ActionTypes>) => {
     dispatch({ type: PENDING });
     try {
       await TaskApi.remove(_id);
