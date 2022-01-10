@@ -5,16 +5,17 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import { Box } from '@mui/system';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import ProgressTask from 'components/progress';
 import { PATH_REPORT } from 'routes/routes.path';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTaskByProcessId } from 'store/task/action';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { RootState } from 'store';
 import { getProcessById } from 'store/process/action';
 import ITopic from 'types/topic';
+import ITask from 'types/task';
 import { dataTask } from './task.data';
 
 interface TaskListProps {
@@ -23,6 +24,7 @@ interface TaskListProps {
 
 export default function TaskList(props: TaskListProps) {
   const { _id } = props;
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,6 +37,22 @@ export default function TaskList(props: TaskListProps) {
   const { task } = useSelector((state: RootState) => state.task);
   const { topicRow } = useSelector((state: RootState) => state.topic);
   const topicData: ITopic = Object(topicRow);
+  const paddingLeft: number[] = [];
+  let totalPadding: number = 0;
+
+  task.forEach((item: ITask, index: number) => {
+    if (index === 0) {
+      paddingLeft.push(totalPadding);
+      totalPadding += item.completePercent;
+    } else {
+      paddingLeft.push(totalPadding);
+      totalPadding += item.completePercent;
+    }
+  });
+
+  const handleClickTask = (id: string | undefined): void => {
+    history.push(`/process/report/${id}`);
+  };
 
   return (
     <Box className="mt-5 flex flex-col items-start w-full">
@@ -53,7 +71,7 @@ export default function TaskList(props: TaskListProps) {
           <Box>Start Day</Box>
         </TimelineContent>
       </TimelineItem>
-      {task.map((item) => (
+      {task.map((item: ITask, index: number) => (
         <TimelineItem key={item._id}>
           <TimelineOppositeContent
             color="text.secondary"
@@ -66,16 +84,22 @@ export default function TaskList(props: TaskListProps) {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            {/* <Box sx={{ marginLeft: `${item.left * 1290}px` }}> */}
-            <Box>
-              <Link to={PATH_REPORT}>
-                <Box className="bg-red-900 h-5 w-full" />
-                <ProgressTask
-                  label={item.name}
-                  completePercent={item.completePercent}
-                  totalPercent={item.totalPercent}
-                />
-              </Link>
+            <Box className="w-full flex items-center">
+              <Box sx={{ width: `1290px` }}>
+                <Box
+                  className="relative"
+                  sx={{
+                    paddingLeft: `${paddingLeft[index]}% `,
+                  }}
+                >
+                  <ProgressTask
+                    label={item.name}
+                    completePercent={item.completePercent}
+                    totalPercent={item.totalPercent}
+                    onClickProps={() => handleClickTask(item._id)}
+                  />
+                </Box>
+              </Box>
             </Box>
           </TimelineContent>
         </TimelineItem>

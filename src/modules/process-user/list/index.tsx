@@ -22,9 +22,9 @@ interface ProcessListProps {
 }
 
 export default function ProcessList(props: ProcessListProps) {
-  const history = useHistory();
   const { processUser, role } = props;
   const dispatch = useDispatch();
+  const history = useHistory();
   const [page, setPage] = useState<number>(0);
   const { user } = useSelector((state: RootState) => state.user);
   const userData: IUser[] = Object(user);

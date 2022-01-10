@@ -14,27 +14,33 @@ export default function ProgressTask(props: ProgressTaskProps) {
     props;
   return (
     <Box
-      className=" rounded-3xl relative"
+      className=" rounded-3xl cursor-pointer hover:opacity-80"
       sx={{
-        width: '1290px',
+        width: `${(totalPercent / 100) * 1290}px `,
         height: '30px',
         backgroundColor: '#95a5a6',
       }}
+      onClick={onClickProps}
     >
       <Box
         className="absolute rounded-3xl z-40"
         sx={{
-          width: '1290px',
+          width: `${completePercent}%`,
           height: '30px',
           backgroundColor: '#0c2461',
         }}
       >
         {' '}
       </Box>
-      <Box className="z-50 text-white absolute transform left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col items-center">
+      <Box
+        className="z-50 text-white absolute flex pl-2"
+        sx={{
+          width: `${(totalPercent / 100) * 1290}px `,
+          top: '6px',
+        }}
+      >
         <Typography
           sx={{
-            width: '1290px',
             textAlign: 'center',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -44,9 +50,6 @@ export default function ProgressTask(props: ProgressTaskProps) {
         >
           {label}
         </Typography>
-        {/* <Typography variant="caption">
-          {percent * 100}% / {totalPercent * 100}%
-        </Typography> */}
       </Box>
     </Box>
   );

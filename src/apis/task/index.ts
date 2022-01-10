@@ -6,6 +6,10 @@ const TaskApi = {
     const url: string = `/task/list`;
     return axiosClient.get(url);
   },
+  getTaskById(_id: string) {
+    const url: string = `/task/findtask/${_id}`;
+    return axiosClient.get(url);
+  },
   getTaskByProcessId(processId: string) {
     const url: string = `/task/list/${processId}`;
     return axiosClient.get(url);

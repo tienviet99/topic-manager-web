@@ -64,7 +64,7 @@ export default function ProcessMain() {
             <Box className="w-full mt-8 bg-white p-5 rounded-lg shadow">
               <Box className="ml-3">
                 <Box className="flex relative justify-end">
-                  <Box className="absolute top-0 left-1/2">
+                  <Box className="absolute top-0 left-1/2 transform -translate-x-1/2 ">
                     {!isUpdate ? (
                       <Typography variant="h5">Task List</Typography>
                     ) : (
