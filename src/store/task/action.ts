@@ -6,6 +6,7 @@ import {
   ADD_TASK,
   DELETE_TASK,
   GET_TASK,
+  GET_TASK_BY_ID,
   GET_TASK_BY_PROCESS_ID,
   PENDING,
   REJECTED,
@@ -18,6 +19,17 @@ export const getTask =
     try {
       const { data: task } = await TaskApi.getAll();
       dispatch({ type: GET_TASK, payload: task });
+    } catch (error) {
+      dispatch({ type: REJECTED });
+    }
+  };
+
+export const getTaskById =
+  (id: string) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PENDING });
+    try {
+      const { data: taskRow } = await TaskApi.getTaskById(id);
+      dispatch({ type: GET_TASK_BY_ID, payload: taskRow });
     } catch (error) {
       dispatch({ type: REJECTED });
     }

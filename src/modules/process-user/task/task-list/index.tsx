@@ -7,7 +7,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import { Box } from '@mui/system';
 import { Link, useHistory } from 'react-router-dom';
 
-import ProgressTask from 'components/progress';
+import ProgressTask from 'components/progress/progress-task';
 import { PATH_REPORT } from 'routes/routes.path';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTaskByProcessId } from 'store/task/action';
@@ -18,15 +18,13 @@ import ITopic from 'types/topic';
 import ITask from 'types/task';
 import { dataTask } from './task.data';
 
-interface TaskListProps {
-  _id: string | undefined;
-}
-
-export default function TaskList(props: TaskListProps) {
-  const { _id } = props;
+export default function TaskList() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const _id: any = localStorage.getItem('processId');
 
+  const { task } = useSelector((state: RootState) => state.task);
+  const { topicRow } = useSelector((state: RootState) => state.topic);
   useEffect(() => {
     if (_id) {
       dispatch(getTaskByProcessId(_id));
@@ -34,12 +32,10 @@ export default function TaskList(props: TaskListProps) {
     }
   }, [_id]);
 
-  const { task } = useSelector((state: RootState) => state.task);
-  const { topicRow } = useSelector((state: RootState) => state.topic);
   const topicData: ITopic = Object(topicRow);
   const paddingLeft: number[] = [];
-  let totalPadding: number = 0;
 
+  let totalPadding: number = 0;
   task.forEach((item: ITask, index: number) => {
     if (index === 0) {
       paddingLeft.push(totalPadding);
@@ -50,10 +46,15 @@ export default function TaskList(props: TaskListProps) {
     }
   });
 
+  task.forEach((item) => {
+    console.log(item);
+  });
+
   const handleClickTask = (id: string | undefined): void => {
     history.push(`/process/report/${id}`);
   };
 
+  console.log('task: ', task);
   return (
     <Box className="mt-5 flex flex-col items-start w-full">
       <TimelineItem>

@@ -7,7 +7,7 @@ import ReportForm from 'modules/process-user/form';
 import HistoryTask from 'modules/process-user/history';
 import ReportDetail from 'modules/process-user/report-detail';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function Report() {
   const history = useHistory();
@@ -20,6 +20,7 @@ export default function Report() {
   };
 
   const _id = localStorage.getItem('processId');
+  const { id } = useParams<{ id: string }>();
 
   return (
     <Box>
@@ -34,9 +35,7 @@ export default function Report() {
         <Grid item xs={12}>
           <Box className="w-full mt-8 bg-white p-5 rounded-lg shadow ">
             <Box className="ml-3">
-              <Typography variant="h5">Task : Name</Typography>
-              <Divider className="pt-1" />
-              <ReportDetail />
+              <ReportDetail idTask={id} />
             </Box>
           </Box>
           <Box className="my-3 flex justify-end">
@@ -48,7 +47,7 @@ export default function Report() {
           </Box>
           <Box className="w-full bg-white p-5 rounded-lg shadow">
             <Box className="ml-3">
-              <Typography variant="h5">Form Report</Typography>
+              <Typography variant="h5">Form report</Typography>
               <Divider className="pt-1" />
               <ReportForm />
             </Box>

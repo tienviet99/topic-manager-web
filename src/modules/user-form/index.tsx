@@ -32,7 +32,6 @@ export default function UserForm(props: UserFormProps) {
   const { _id } = useParams<{ _id: string }>();
   const { userRow } = useSelector((state: RootState) => state.user);
   const userData: IUser = Object(userRow);
-  const [errMajor, setErrMajor] = useState<boolean>(false);
   const [errDate, setErrDate] = useState<boolean>(false);
   const renderRole = (param: number): string => {
     switch (param) {

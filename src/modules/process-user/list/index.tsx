@@ -39,9 +39,13 @@ export default function ProcessList(props: ProcessListProps) {
     return '';
   };
 
-  const handleUpdateProcessId = (_id: string | undefined): void => {
+  const handleUpdateProcessId = (
+    _id: string | undefined,
+    topic_id: string | undefined,
+  ): void => {
     history.push(`/process/container/${_id}`);
     localStorage.setItem('processId', `${_id}`);
+    localStorage.setItem('topic_id', `${topic_id}`);
   };
 
   useEffect(() => {
@@ -72,7 +76,9 @@ export default function ProcessList(props: ProcessListProps) {
             <ButtonConfirm
               label="View"
               type="button"
-              onClickProps={() => handleUpdateProcessId(item._id)}
+              onClickProps={() =>
+                handleUpdateProcessId(item._id, item.topicId._id)
+              }
             />
           </Box>
         </TableCell>

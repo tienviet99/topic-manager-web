@@ -4,6 +4,7 @@ import {
   ADD_TASK,
   DELETE_TASK,
   GET_TASK,
+  GET_TASK_BY_ID,
   GET_TASK_BY_PROCESS_ID,
   PENDING,
   UPDATE_TASK,
@@ -12,11 +13,24 @@ import {
 interface InitialState {
   loading: boolean;
   task: ITask[];
+  taskRow: ITask;
 }
 
 const initialState: InitialState = {
   loading: false,
   task: [],
+  taskRow: {
+    processId: '',
+    name: '',
+    start_date: '',
+    end_date: '',
+    requirements: '',
+    totalPercent: 0,
+    completePercent: 0,
+    _id: '',
+    createAt: '',
+    updateAt: '',
+  },
 };
 
 const TaskReducer = (state = initialState, action: ActionTypes) => {
@@ -25,6 +39,8 @@ const TaskReducer = (state = initialState, action: ActionTypes) => {
       return { ...state, loading: true };
     case GET_TASK:
       return { ...state, task: action.payload, loading: false };
+    case GET_TASK_BY_ID:
+      return { ...state, taskRow: action.payload, loading: false };
     case GET_TASK_BY_PROCESS_ID:
       return { ...state, task: action.payload, loading: false };
     case ADD_TASK:

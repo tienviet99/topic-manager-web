@@ -87,7 +87,7 @@ export default function ProcessMain() {
                 <Divider className="pt-1" />
               </Box>
               {!isUpdate ? (
-                <TaskList _id={processRow._id} />
+                <TaskList />
               ) : (
                 <TaskForm
                   _id={processRow._id}

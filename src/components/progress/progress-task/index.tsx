@@ -3,7 +3,7 @@ import { Box, height } from '@mui/system';
 import React from 'react';
 
 interface ProgressTaskProps {
-  label: string;
+  label?: string;
   completePercent: number;
   totalPercent: number;
   onClickProps?: () => void;
@@ -58,4 +58,5 @@ export default function ProgressTask(props: ProgressTaskProps) {
 ProgressTask.defaultProps = {
   // eslint-disable-next-line prettier/prettier
   onClickProps: () => { },
+  label: '',
 };

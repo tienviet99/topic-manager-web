@@ -42,8 +42,8 @@ export default function TaskForm(props: TaskFormProps) {
       dispatch(getTaskByProcessId(_id));
       dispatch(getProcessById(_id));
     }
-    const sortTask = task.sort(
-      (first, last) =>
+    const sortTask = Object(task).sort(
+      (first: any, last: any) =>
         new Date(first.start_date).getTime() -
         new Date(last.start_date).getTime(),
     );

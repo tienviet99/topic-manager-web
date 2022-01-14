@@ -8,3 +8,9 @@
   color: white;
   border-radius: 32px;
 }
+.button_back_container:hover {
+  opacity: 0.8;
+  transition-property: 'transform';
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
